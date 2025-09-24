@@ -19,7 +19,7 @@ export default function Dash_Minue() {
     const { open: sidebarOpen, setOpen: setSidebarOpen } = ctx;
 
     return (
-        <div className="pt-10">
+        <div className="pt-10 z-100">
 
             <div className="px-4 py-2 w-full hover:bg-[#cedbf4] ">
                 <Link

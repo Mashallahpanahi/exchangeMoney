@@ -49,6 +49,29 @@ module.exports = {
       xl: '1280px',
       "2xl": "1536px",
     },
+
   },
   plugins: [],
 }
+
+
+
+
+
+// colors: {
+//     lamaSky: "#C3EBFA",
+//     lamaSkyLite: " #EDF9FD  ",
+//     lamaPupale: "#CFCFF",
+//     lamaPupleLight: "#F1F0FF",
+//     lamalYellow: "#FAE27C",
+//     lamalYellowLight: "#FEFCE8",
+//     naqibBlue: "#1c58dd",
+//     naqibRed: "#b92929"
+
+//   }
+
+
+
+// font
+
+// font-semibold

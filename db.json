@@ -2,11 +2,15 @@
   "girlsData": [
     {
       "id": "1",
-      "src": "../images/girl1.jpg",
-      "name": "Shkilla",
-      "age": 23,
-      "location": "London",
-      "cost": 500
+      "branchName": "kabully",
+      "branchCity": "Kabul",
+      "branchManager": "Ahmad"
+    },
+    {
+      "id": "dd5a",
+      "branchName": "Mazary",
+      "branchCity": "Mazar",
+      "branchManager": "khaliq"
     }
   ]
 }
