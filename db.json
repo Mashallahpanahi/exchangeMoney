@@ -1,0 +1,12 @@
+{
+  "girlsData": [
+    {
+      "id": "1",
+      "src": "../images/girl1.jpg",
+      "name": "Shkilla",
+      "age": 23,
+      "location": "London",
+      "cost": 500
+    }
+  ]
+}
