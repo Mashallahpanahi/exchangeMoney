@@ -12,7 +12,8 @@ export default function Dash_Minue() {
     const ctx = useContext(DashboardMinueCtx);
     const [open, setOpen] = useState(false);
     const [openClass, setOpenClass] = useState(false);
-    const [openBranch, setOpenBranch] = useState(false)
+    const [openBranch, setOpenBranch] = useState(false);
+    const [openJournal, setOpenJournal] = useState(false)
 
 
     if (!ctx) return null; // safeguard
@@ -31,6 +32,34 @@ export default function Dash_Minue() {
                 </Link>
             </div>
 
+
+
+            <div>
+                <button
+                    onClick={() => setOpenJournal(!openJournal)}
+                    className="inline-flex justify-between items-center w-full px-4 py-2 hover:bg-[#cedbf4] font-bold"
+                >
+                    Journal <span className="ml-2 text-[10px]">{openJournal ? "▲" : "▼"}</span>
+                </button>
+                {openJournal && (
+                    <div className="w-full shadow-lg text-black">
+                        <Link href="/dashboard/journal/journalOne" className="block px-4 py-2 hover:bg-[#cedbf4]"
+                            onClick={() => setSidebarOpen(false)}
+                        >
+                            Journal 1
+                        </Link>
+                        <Link href="/dashboard/journal/journalTwo" className="block px-4 py-2 hover:bg-[#cedbf4]" onClick={() => setSidebarOpen(false)}>
+                            Journal 2
+                        </Link>
+                    </div>
+                )}
+            </div>
+
+
+
+
+
+
             <div>
                 <button
                     onClick={() => setOpen(!open)}
@@ -43,7 +72,6 @@ export default function Dash_Minue() {
                         <Link href="#" className="block px-4 py-2 hover:bg-[#cedbf4]"
                             onClick={() => setSidebarOpen(false)}
                         >
-
                             dashboard A
 
                         </Link>
@@ -53,31 +81,6 @@ export default function Dash_Minue() {
                     </div>
                 )}
             </div>
-
-            <div>
-                <button
-                    onClick={() => setOpenClass(!openClass)}
-                    className="inline-flex justify-between items-center w-full px-4 py-2 hover:bg-[#cedbf4] font-bold"
-                >
-                    Class <span className="ml-2 text-[10px]">{openClass ? "▲" : "▼"}</span>
-                </button>
-                {openClass && (
-                    <div className="w-full shadow-lg text-black">
-                        <Link href="#" className="block px-4 py-2 hover:bg-[#cedbf4]" onClick={() => setSidebarOpen(false)}>
-                            class A
-                        </Link>
-                        <Link href="#" className="block px-4 py-2 hover:bg-[#cedbf4]" onClick={() => setSidebarOpen(false)}>
-                            class B
-                        </Link>
-                    </div>
-                )}
-            </div>
-
-
-
-
-
-
 
             <div>
                 <button

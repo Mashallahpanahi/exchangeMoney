@@ -31,7 +31,7 @@ export default function UpdateBranch() {
         branchManager: "",
     });
 
-    // ✅ وقتی targetBranch تغییر کرد، formData را پر کن
+
     useEffect(() => {
         if (targetBranch) {
             setFormData({
@@ -50,9 +50,9 @@ export default function UpdateBranch() {
         e.preventDefault();
 
         try {
-            // ✅ استفاده از updateID در URL به جای "1"
+
             const res = await fetch(`http://localhost:8000/api/Branch/${updateID}`, {
-                method: "PUT", // ✅ اصلاح از "Update" به "PUT"
+                method: "PUT", //  manzor is put haman update ast"
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -61,7 +61,7 @@ export default function UpdateBranch() {
 
             if (res.ok) {
                 alert("Branch updated successfully ✅");
-                router.push("/branches"); // ✅ برگشت به صفحه branches
+                router.push("/dashboard/branches/manageBranch");
             } else {
                 alert("Failed to update branch");
             }
@@ -112,7 +112,7 @@ export default function UpdateBranch() {
                     <input
                         type="text"
                         name="branchName"
-                        value={formData.branchName} // ✅ استفاده از formData به جای targetBranch
+                        value={formData.branchName}
                         onChange={handleChange}
                         required
                         className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -124,7 +124,7 @@ export default function UpdateBranch() {
                     <input
                         type="text"
                         name="branchCity"
-                        value={formData.branchCity} // ✅ استفاده از formData به جای targetBranch
+                        value={formData.branchCity}
                         onChange={handleChange}
                         required
                         className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -136,7 +136,7 @@ export default function UpdateBranch() {
                     <input
                         type="text"
                         name="branchManager"
-                        value={formData.branchManager} // ✅ استفاده از formData به جای targetBranch
+                        value={formData.branchManager}
                         onChange={handleChange}
                         required
                         className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
