@@ -65,18 +65,21 @@ export default function Dash_Minue() {
                     onClick={() => setOpen(!open)}
                     className="inline-flex justify-between items-center w-full px-4 py-2 hover:bg-[#cedbf4] font-bold"
                 >
-                    Dashboard <span className="ml-2 text-[10px]">{open ? "▲" : "▼"}</span>
+                    Approvals<span className="ml-2 text-[10px]">{open ? "▲" : "▼"}</span>
                 </button>
                 {open && (
                     <div className="w-full shadow-lg text-black">
                         <Link href="#" className="block px-4 py-2 hover:bg-[#cedbf4]"
                             onClick={() => setSidebarOpen(false)}
                         >
-                            dashboard A
+                            Pending Approvals
 
                         </Link>
                         <Link href="#" className="block px-4 py-2 hover:bg-[#cedbf4]" onClick={() => setSidebarOpen(false)}>
-                            dashboard B
+                            Approved Transactions
+                        </Link>
+                        <Link href="#" className="block px-4 py-2 hover:bg-[#cedbf4]" onClick={() => setSidebarOpen(false)}>
+                            Rejected Transactions
                         </Link>
                     </div>
                 )}

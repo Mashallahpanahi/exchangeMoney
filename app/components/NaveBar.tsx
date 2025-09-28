@@ -6,10 +6,12 @@ import React, { useState } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { MdMenu, MdClose } from "react-icons/md";
 import { DepositPopup } from '../dashboard/naveBarMiue/deposit_withdraw/DepositPopup';
+import Exchanges from './Exchanges';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDepositPopupOpen, setIsDepositPopupOpen] = useState(false);
+    const [isExchangePopupOpen, setIsEchangePopupOpen] = useState(false)
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -23,6 +25,17 @@ const Navbar = () => {
     const closeDepositPopup = () => {
         setIsDepositPopupOpen(false);
     };
+
+
+
+    const openExchange = () => {
+        setIsEchangePopupOpen(true);
+        setIsOpen(!isOpen);
+
+    }
+    const closeExchangePopup = () => {
+        setIsEchangePopupOpen(false)
+    }
 
     return (
         <nav className="">
@@ -54,8 +67,13 @@ const Navbar = () => {
                             </button>
                         </li>
 
+                        <li>
+                            <button onClick={openExchange} className="text-white hover:text-gray-200 w-full text-right">
+                                Exchange
+                            </button>
+                        </li>
+
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Transaction</Link></li>
-                        <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Tronsport</Link></li>
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Check</Link></li>
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Money transfer</Link></li>
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Faild</Link></li>
@@ -74,7 +92,7 @@ const Navbar = () => {
                     </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-slate-50 w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
-                    <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Transaction</Link>
+                    <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Exchange</Link>
                 </div>
                 <div className="flex flex-col shadow-xl bg-slate-50 w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
                     <Link className="text-[#b92929] block w-full h-full flex items-center justify-center" href={''}>Tronsport</Link>
@@ -106,7 +124,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex flex-col shadow-xl bg-slate-50 w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
-                    <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Transaction</Link>
+                    <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Exchange</Link>
                 </div>
                 <div className="flex flex-col shadow-xl bg-slate-50 w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
                     <Link className="text-[#b92929] block w-full h-full flex items-center justify-center" href={''}>Tronsport</Link>
@@ -130,6 +148,7 @@ const Navbar = () => {
 
             {/* پاپ‌آپ Deposit */}
             <DepositPopup isOpen={isDepositPopupOpen} onClose={closeDepositPopup} />
+            <Exchanges isOpen={isExchangePopupOpen} onClose={closeExchangePopup} />
         </nav>
     );
 };
