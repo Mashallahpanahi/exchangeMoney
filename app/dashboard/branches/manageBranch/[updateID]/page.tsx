@@ -101,14 +101,14 @@ export default function UpdateBranch() {
         <div className="flex justify-center items-center mx-auto mt-10">
             <form
                 onSubmit={handleSubmit}
-                className="bg-white p-6 rounded-2xl shadow-md w-full"
+                className="bg-varWhite p-6 rounded-2xl shadow-md w-full"
             >
-                <h1 className="text-2xl font-bold text-center text-blue-600 mb-6">
+                <h1 className="text-2xl font-bold text-center text-naqibBlue mb-6">
                     Edit branch
                 </h1>
 
                 <div className="mb-4">
-                    <label className="block text-gray-700 mb-1">Branch Name</label>
+                    <label className="block text-textGray mb-1">Branch Name</label>
                     <input
                         type="text"
                         name="branchName"
@@ -120,7 +120,7 @@ export default function UpdateBranch() {
                 </div>
 
                 <div className="mb-4">
-                    <label className="block text-gray-700 mb-1">Branch City</label>
+                    <label className="block text-textGray mb-1">Branch City</label>
                     <input
                         type="text"
                         name="branchCity"
@@ -132,20 +132,20 @@ export default function UpdateBranch() {
                 </div>
 
                 <div className="mb-4">
-                    <label className="block text-gray-700 mb-1">Branch Manager</label>
+                    <label className="block text-textGray mb-1">Branch Manager</label>
                     <input
                         type="text"
                         name="branchManager"
                         value={formData.branchManager}
                         onChange={handleChange}
                         required
-                        className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-inputRing"
                     />
                 </div>
 
                 <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700"
+                    className="w-full bg-naqibBlue text-varWhite font-semibold py-2 rounded-lg hover:bg-naqibBlue"
                 >
                     Update Branch
                 </button>

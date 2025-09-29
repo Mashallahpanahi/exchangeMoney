@@ -24,18 +24,18 @@ export const DepositPopup = ({ isOpen, onClose }: DepositpopupType) => {
 
             <div
 
-                className="  flex flex-col bg-white bg-opacity-90 backdrop-blur-md rounded-xl shadow-2xl p-8 pt-2  w-full mx-4 border border-white border-opacity-30 transform transition-all duration-300 scale-95 animate-in fade-in-50 slide-in-from-bottom-5"
+                className="  flex flex-col bg-varWhite bg-opacity-90 backdrop-blur-md rounded-xl shadow-2xl p-8 pt-2  w-full mx-4 border border-varWhite border-opacity-30 transform transition-all duration-300 scale-95 animate-in fade-in-50 slide-in-from-bottom-5"
                 onClick={(e) => e.stopPropagation()} >
 
                 <div className='flex items-center justify-between '>
                     <button
                         onClick={onClose}
-                        className=" text-red-500 text-4xl font-bold -mt-4  "
+                        className=" text-naqibRed text-4xl font-bold -mt-4  "
                     >
                         ×
                     </button>
 
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">Deposit</h2>
+                    <h2 className="text-2xl font-bold text-popupText mb-4">Deposit</h2>
                 </div>
 
                 <div className='flex w-full gap-4 items-center justify-center'>
@@ -81,7 +81,7 @@ export const DepositPopup = ({ isOpen, onClose }: DepositpopupType) => {
 
                     </div>
 
-                    <button className='bg-[#006650] w-full rounded-md text-white font-bold p-2 mt-4 mb-2'>ثبت</button>
+                    <button className='bg-buttonColor w-full rounded-md text-varWhite font-bold p-2 mt-4 mb-2'>ثبت</button>
 
                 </form>
 

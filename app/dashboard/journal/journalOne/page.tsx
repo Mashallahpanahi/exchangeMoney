@@ -29,8 +29,8 @@ export default function journalOne() {
     return (
         <div className="w-full ml-4 ">
             <div id="firsPar_currence" className="">
-                <table className="border border-blue-600 w-full">
-                    <thead className="border border-blue-800  bg-white">
+                <table className="border border-naqibBlue w-full">
+                    <thead className="border border-naqibBlue  bg-varWhite">
                         <tr className=" ">
                             <th className=" p-2 ">Currency</th>
                             <th>دالر</th>
@@ -43,13 +43,13 @@ export default function journalOne() {
                     <tbody>
 
                         {journalOneData.map(item => (
-                            <tr key={item.id} className="text-blue-950">
-                                <td className={`p-2  text-center rounded-md ${item.id % 2 === 0 ? "bg-[#65d3ecdd]" : "bg-[#307180dd]"}`}>{item.cerrency}</td>
-                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-[#65d3ecdd]" : "bg-[#307180dd]"}`}>{item.Usd}</td>
-                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-[#65d3ecdd]" : "bg-[#307180dd]"}`}>{item.Af}</td>
-                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-[#65d3ecdd]" : "bg-[#307180dd]"}`}>{item.Kldar}</td>
-                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-[#65d3ecdd]" : "bg-[#307180dd]"}`}>{item.Darham}</td>
-                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-[#65d3ecdd]" : "bg-[#307180dd]"}`}>{item.Uroe}</td>
+                            <tr key={item.id} className="text-tableText">
+                                <td className={`p-2  text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.cerrency}</td>
+                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.Usd}</td>
+                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.Af}</td>
+                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.Kldar}</td>
+                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.Darham}</td>
+                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.Uroe}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -71,13 +71,13 @@ export default function journalOne() {
                             <thead>
                                 <tr key={"1"}>
                                     {creditPartHeader.map(item => (
-                                        <th className="p-2 text-white bg-black">{item}</th>
+                                        <th className="p-2 text-varWhite bg-varBlack">{item}</th>
                                     ))}
                                 </tr>
                             </thead>
                             <tbody>
                                 {creditPartData.map(item => (
-                                    <tr className="border border-gray-400">
+                                    <tr className="border border-tableBorder">
                                         <td className="p-4">{item.number}</td>
                                         <td>{item.date}</td>
                                         <td>{item.details}</td>
@@ -105,17 +105,17 @@ export default function journalOne() {
                         <h1>Debit Part</h1>
                     </div>
                     <div className="w-full">
-                        <table className="border border-black w-full">
+                        <table className="border border-tableBorder w-full">
                             <thead>
                                 <tr key={"1"}>
                                     {creditPartHeader.map(item => (
-                                        <th className="p-2 text-white bg-black">{item}</th>
+                                        <th className="p-2 text-varWhite bg-varBlack">{item}</th>
                                     ))}
                                 </tr>
                             </thead>
                             <tbody>
                                 {creditPartData.map(item => (
-                                    <tr className="border border-gray-400">
+                                    <tr className="border border-tableBorder">
                                         <td className="p-4">{item.number}</td>
                                         <td>{item.date}</td>
                                         <td>{item.details}</td>

@@ -44,25 +44,25 @@ export default function ManageBranchPage() {
     };
 
     return (
-        <div className="p-4">
-            <div className="mb-4">
+        <div className="p-4 w-full">
+            <div className="mb-4 w-full">
                 <Link
                     href="/dashboard/branches/addBranch"
-                    className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700  font-semibold"
+                    className="bg-buttonColor text-varWhite px-4 py-2 rounded-md hover:bg-green-700  font-semibold"
                 >
                     Add new branch
                 </Link>
             </div>
 
             <table className="border border-gray-300 rounded-md shadow-md w-full">
-                <thead className="bg-[#EDF9FD]">
-                    <tr className="border-2 border-[#1c58dd] text-[#1c58dd]">
+                <thead className="bg-bgTableHeader">
+                    <tr className="border-2 border-[#1c58dd] text-naqibBlue">
 
-                        <th className="p-4 border border-[#1c58dd]">Branch Name</th>
-                        <th className="p-4 border border-[#1c58dd]">Branch City</th>
-                        <th className="p-4 border border-[#1c58dd]">Branch Manager</th>
-                        <th className="p-4 border border-[#1c58dd]">Delete</th>
-                        <th className="p-4 border border-[#1c58dd]">Update</th>
+                        <th className="p-4 border border-naqibBlue">Branch Name</th>
+                        <th className="p-4 border border-naqibBlue">Branch City</th>
+                        <th className="p-4 border border-naqibBlue">Branch Manager</th>
+                        <th className="p-4 border border-naqibBlue">Delete</th>
+                        <th className="p-4 border border-naqibBlue">Update</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,13 +72,13 @@ export default function ManageBranchPage() {
                             <td className="p-2 text-center">{item.branchName}</td>
                             <td className="p-2 text-center">{item.branchCity}</td>
                             <td className="p-2 text-center">{item.branchManager}</td>
-                            <td className="p-2 text-center text-red-500 cursor-pointer">
+                            <td className="p-2 text-center text-naqibRed cursor-pointer">
                                 <MdDeleteForever className="hover:cursor-pointer"
                                     onClick={() => handleDelete(item.id)}
                                     size={24}
                                 />
                             </td>
-                            <td className="p-2 text-center text-[#1c58dd] cursor-pointer">
+                            <td className="p-2 text-center text-naqibBlue cursor-pointer">
 
                                 <Link href={`/dashboard/branches/manageBranch/${item.id}`}>
                                     <AiFillEdit size={24} />
