@@ -7,6 +7,8 @@ export default function ManagePage() {
 
 
         <div className="w-full">
+
+
             <div className="bg-bgNaveBarHover grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
 
                 {/* Left Card */}
@@ -36,6 +38,38 @@ export default function ManagePage() {
                     </div>
                 </div>
             </div>
+
+
+            <div className="bg-varWhite grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full mt-4 p-4 h-screen">
+
+                <div className="shadow-xl sm:w-full w-3/5 mx-auto m-2 rounded-md  p-4">
+                    <h1 className="font-bold text-naqibBlue ">All info about your branch.</h1>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                </div>
+
+                <div className="shadow-xl sm:w-full w-3/5 mx-auto m-2 rounded-md  p-4">
+                    <h1 className="font-bold text-naqibBlue ">All info about your branch.</h1>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                </div>
+                <div className="shadow-xl sm:w-full w-3/5 mx-auto m-2 rounded-md  p-4">
+                    <h1 className="font-bold text-naqibBlue ">All info about your branch.</h1>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                    <h2>this is some text about this branch</h2>
+                </div>
+
+            </div>
+
         </div>
 
 

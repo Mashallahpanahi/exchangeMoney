@@ -3,6 +3,6 @@
 
 export default function DashboardPage() {
     return (
-        <div>dashboard</div>
+        <div>Dashboar Home page</div>
     )
 }

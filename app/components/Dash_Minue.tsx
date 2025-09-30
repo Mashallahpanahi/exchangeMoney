@@ -14,6 +14,7 @@ export default function Dash_Minue() {
     const [openClass, setOpenClass] = useState(false);
     const [openBranch, setOpenBranch] = useState(false);
     const [openJournal, setOpenJournal] = useState(false)
+    const [openHomePage, setOpenHomePage] = useState(false);
 
 
     if (!ctx) return null; // safeguard
@@ -21,6 +22,17 @@ export default function Dash_Minue() {
 
     return (
         <div className="pt-10 z-100">
+
+
+            <div className="px-4 py-2 w-full hover:bg-dashboardMinueOnHover ">
+                <Link
+                    href={'/dashboard'}
+                    className="font-bold"
+                    onClick={() => setSidebarOpen(false)}
+                >
+                    Home
+                </Link>
+            </div>
 
             <div className="px-4 py-2 w-full hover:bg-dashboardMinueOnHover ">
                 <Link

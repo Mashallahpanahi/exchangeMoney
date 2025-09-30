@@ -8,6 +8,7 @@ import { MdClose } from "react-icons/md";
 import { DepositPopup } from '../dashboard/naveBarMiue/deposit_withdraw/DepositPopup';
 import Exchanges from './Exchanges';
 import TransactionMoney from './TransactionMoney';
+import Hawala from './Hawala';
 
 
 
@@ -55,6 +56,16 @@ const Navbar = () => {
     }
 
 
+    const [isHawalaPopupOpen, setIsHawalaPopupOpen] = useState(false)
+    const openHawala = () => {
+        setIsHawalaPopupOpen(true)
+        setIsOpen(!open)
+    }
+    const closeHawalaPopup = () => {
+        setIsHawalaPopupOpen(false)
+    }
+
+
     return (
         <nav className="">
 
@@ -97,9 +108,16 @@ const Navbar = () => {
                             </button>
                         </li>
 
+                        <li>
+                            <button onClick={openHawala} className="text-varWhite hover:text-naveBarHoverText w-full text-right">
+                                Hawala
+                            </button>
+                        </li>
+
+
 
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Check</Link></li>
-                        <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Money transfer</Link></li>
+
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Faild</Link></li>
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Backup</Link></li>
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Logout</Link></li>
@@ -126,11 +144,14 @@ const Navbar = () => {
                     </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
-                    <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Check</Link>
+                    <button onClick={openHawala} className="text-naqibBlue w-full ">
+                        Hawala
+                    </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
-                    <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Money transfer</Link>
+                    <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Check</Link>
                 </div>
+
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
                     <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Faild</Link>
                 </div>
@@ -162,11 +183,14 @@ const Navbar = () => {
                     </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
-                    <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Check</Link>
+                    <button onClick={openHawala} className="text-naqibBlue w-full">
+                        Hawala
+                    </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
-                    <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Money transfer</Link>
+                    <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Check</Link>
                 </div>
+
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Faild</Link>
                 </div>
@@ -188,6 +212,11 @@ const Navbar = () => {
                 isOpen={isTransactionPopupOpen}
                 onClose={closeTransactionPopup}
             />
+            <Hawala
+                isOpen={isHawalaPopupOpen}
+                onClose={closeHawalaPopup}
+            />
+
         </nav>
     );
 };
