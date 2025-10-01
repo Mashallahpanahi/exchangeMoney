@@ -9,6 +9,7 @@ import { DepositPopup } from '../dashboard/naveBarMiue/deposit_withdraw/DepositP
 import Exchanges from './Exchanges';
 import TransactionMoney from './TransactionMoney';
 import Hawala from './Hawala';
+import AddCustomer from './AddCustomer';
 
 
 
@@ -65,6 +66,15 @@ const Navbar = () => {
         setIsHawalaPopupOpen(false)
     }
 
+    const [isCustomerPopupOpen, setIsCustomerPopupOpen] = useState(false)
+    const openCustomer = () => {
+        setIsCustomerPopupOpen(true)
+        setIsOpen(!open)
+    }
+    const closeCustomerPopup = () => {
+        setIsCustomerPopupOpen(false)
+    }
+
 
     return (
         <nav className="">
@@ -114,9 +124,11 @@ const Navbar = () => {
                             </button>
                         </li>
 
-
-
-                        <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Check</Link></li>
+                        <li>
+                            <button onClick={openCustomer} className="text-varWhite hover:text-naveBarHoverText w-full text-right">
+                                Customer
+                            </button>
+                        </li>
 
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Faild</Link></li>
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Backup</Link></li>
@@ -215,6 +227,10 @@ const Navbar = () => {
             <Hawala
                 isOpen={isHawalaPopupOpen}
                 onClose={closeHawalaPopup}
+            />
+            <AddCustomer
+                isOpen={isCustomerPopupOpen}
+                onClose={closeCustomerPopup}
             />
 
         </nav>
