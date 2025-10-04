@@ -5,11 +5,12 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { HiMenu } from 'react-icons/hi';
 import { MdClose } from "react-icons/md";
-import { DepositPopup } from '../dashboard/naveBarMiue/deposit_withdraw/DepositPopup';
 import Exchanges from './Exchanges';
 import TransactionMoney from './TransactionMoney';
 import Hawala from './Hawala';
 import AddCustomer from './AddCustomer';
+import DepositPopup from './DepositPopup';
+import Outcome from './Outcome';
 
 
 
@@ -76,6 +77,16 @@ const Navbar = () => {
     }
 
 
+    const [isOutcomePopupOpen, setIsOutcomePopupOpen] = useState(false)
+    const openOutcome = () => {
+        setIsOutcomePopupOpen(true)
+        setIsOpen(!open)
+    }
+    const closeOutcomePopup = () => {
+        setIsOutcomePopupOpen(false)
+    }
+
+
     return (
         <nav className="">
 
@@ -130,6 +141,12 @@ const Navbar = () => {
                             </button>
                         </li>
 
+                        <li>
+                            <button onClick={openOutcome} className="text-varWhite hover:text-naveBarHoverText w-full text-right">
+                                Outcome
+                            </button>
+                        </li>
+
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Faild</Link></li>
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Backup</Link></li>
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Logout</Link></li>
@@ -161,11 +178,15 @@ const Navbar = () => {
                     </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
-                    <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Check</Link>
+                    <button onClick={openCustomer} className="text-naqibBlue w-full ">
+                        Customer
+                    </button>
                 </div>
 
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
-                    <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Faild</Link>
+                    <button onClick={openOutcome} className="text-naqibBlue w-full">
+                        Outcome
+                    </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
                     <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Backup</Link>
@@ -200,14 +221,18 @@ const Navbar = () => {
                     </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
-                    <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Check</Link>
+                    <button onClick={openCustomer} className="text-naqibBlue w-full ">
+                        Customer
+                    </button>
                 </div>
 
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Faild</Link>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
-                    <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Backup</Link>
+                    <button onClick={openOutcome} className="text-naqibBlue w-full">
+                        Outcome
+                    </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Logout</Link>
@@ -216,6 +241,9 @@ const Navbar = () => {
 
             {/* پاپ‌آپ Deposit */}
             <DepositPopup isOpen={isDepositPopupOpen} onClose={closeDepositPopup} />
+
+
+
             <Exchanges
                 isOpen={isExchangePopupOpen}
                 onClose={closeExchangePopup}
@@ -231,6 +259,10 @@ const Navbar = () => {
             <AddCustomer
                 isOpen={isCustomerPopupOpen}
                 onClose={closeCustomerPopup}
+            />
+            <Outcome
+                isOpen={isOutcomePopupOpen}
+                onClose={closeOutcomePopup}
             />
 
         </nav>

@@ -7,7 +7,7 @@ interface exchangeType {
     onClose: () => void;
 }
 
-const slectCustomer: string[] = ["دایمی", "موقت"]
+const slectCustomer: string[] = ["دایم", "موقت"]
 
 export default function AddCustomer({ isOpen, onClose }: exchangeType) {
 

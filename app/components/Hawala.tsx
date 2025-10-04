@@ -1,8 +1,6 @@
 
 
-
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 
 interface exchangeType {
@@ -10,34 +8,76 @@ interface exchangeType {
     onClose: () => void;
 }
 
+interface BranchType {
+    branchName: string,
+    id: number
+
+}
+
 export default function Hawala({ isOpen, onClose }: exchangeType) {
     const [openFromCurrency, setOpenFromCurrency] = useState(false)
-    const [openCurrentBranch, setOpenCurrentBranch] = useState(false)
-    const [openToBranch, setOpenToBranch] = useState(false)
-    const [openCurrencyRate, setOpenCurrencyRate] = useState(false)
+    const [currency, setCurrency] = useState("");
+    const [amountMoney, setAmountMoney] = useState<number | "">("");
+    const [voucherNumber, setVoucherNumber] = useState<string | "">("");
+    const [senderName, setSender] = useState<string | "">("");
+    const [senderLastName, setSenderLastName] = useState<string | "">("");
+    const [senderPhoneNumber, setSenderPhoneNumber] = useState<string | "">("");
+    const [senderAddress, setSenderAddress] = useState<string | "">("");
+    const [receiverName, setReceiverName] = useState<string | "">("");
+    const [receiverLastName, setReceiverLastName] = useState<string | "">("");
+    const [receiverPhoneNumber, setReceiverPhoneNumber] = useState<string | "">("");
+    const [receiverIdCard, setReceiverIdCard] = useState<string | "">("");
+    const [receiverAddress, setReceiverAddress] = useState<string | "">("");
+    const [receiverLocation, setReceiverLocation] = useState<string | ''>("");
+    const [senderLocation, setSenderLocation] = useState<string | ''>("");
 
 
-    const [Currency, setCurrency] = useState("");
-    const [currentBranch, setCurrentBranch] = useState("");
-    const [toBranch, setToBranch] = useState("");
-    const [currencyRate, setCurrencyRate] = useState("");
-
-
-    const [amount, setAmount] = useState<number | "">("");
-    const [numberHawala, setNumberHawala] = useState<string | "">("");
-    const [sender, setSender] = useState<string | "">("");
-    const [resiver, setResiver] = useState<string | "">("");
-    const [senderPhone, setSenderPhone] = useState<number | "">("");
-    const [resiverPhone, setResiverPhone] = useState<number | "">("");
-    const [IDcard, setIDcard] = useState<string | "">("");
-    const [amountRate, setAmountRate] = useState<number | "">("")
-    const [goal, setGoal] = useState<string>("");
-    const [details, setDetails] = useState<string>("");
+    const [senderIdCard, setSenderIdCard] = useState<string | "">("");
+    const [comment, setComment] = useState<string>("");
     const [date, setDate] = useState<string>("");
+    const [openStatus, setOpenSatatus] = useState<boolean>(false);
+    const [status, setStatus] = useState<string>("pendding")
 
 
-    const selectCurrency = ["دالر", "کلدار", "افغانی", "درهم", "یورو"];
-    const brachList = ["Qandahar", "Kabul", "Khairkhana"]
+
+    const [branch_id, setBranch_id] = useState<number>(1)
+    const [customerType, setCustomerType] = useState("موقت")
+    const [openCustomerType, setOpenCustomerType] = useState<boolean>(false)
+    const [commission, setCommission] = useState<string>("");
+
+    const selectCurrency = ["دالر", "کلدار", "افغانی"];
+    const statusList = ["pendding", "approved", "reject"];
+    const TypeOfCustomer = ["دایم", "موفت"]
+    const [loading, setLoading] = useState<boolean>(true);
+
+    const [branches, setBranches] = useState<BranchType[]>([]);
+
+
+
+    useEffect(() => {
+        const fetchCustomers = async () => {
+            try {
+                const res = await fetch("http://localhost:8000/api/Branch");
+                if (!res.ok) {
+                    throw new Error("Failed to fetch customers");
+                }
+                const data = await res.json();
+                setBranches(data);
+                if (data.length > 0) {
+                    setBranch_id(data[0].id); // انتخاب اولین مشتری به عنوان پیش‌فرض
+                }
+            } catch (error) {
+                console.error("Error fetching customers:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (isOpen) {
+            fetchCustomers();
+        }
+    }, [isOpen]);
+
 
     if (!isOpen) return null;
 
@@ -45,25 +85,32 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
         e.preventDefault();
 
         const hawalaFormData = {
-            Currency,
-            currentBranch,
-            toBranch,
-            numberHawala,
-            sender,
-            resiver,
-            senderPhone,
-            resiverPhone,
-            IDcard,
-            amountRate,
-            currencyRate,
-            goal,
-            details,
-            amount,
             date,
+            customerType,
+            amountMoney,
+            voucherNumber,
+            currency,
+            comment,
+            commission,
+            receiverIdCard,
+            receiverAddress,
+            receiverPhoneNumber,
+            receiverLastName,
+            receiverName,
+            senderName,
+            senderLastName,
+            senderPhoneNumber,
+            senderAddress,
+            branch_id,
+            status,
+            senderLocation,
+            receiverLocation,
+            senderIdCard
         };
 
+
         try {
-            const res = await fetch("http://localhost:8000/api/transaction", {
+            const res = await fetch("http://localhost:8000/api/voucher", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -77,7 +124,7 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
 
             const data = await res.json();
             console.log("✅ Success:", data);
-
+            alert(data.message)
             onClose();
         } catch (error) {
             console.error(" Error:", error);
@@ -112,9 +159,10 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
                             <div>
                                 <label className="p-2">شماره حواله</label>
                                 <input
+                                    name="voucherNumber"
                                     type="text"
-                                    value={numberHawala}
-                                    onChange={(e) => setNumberHawala(e.target.value)}
+                                    value={voucherNumber}
+                                    onChange={(e) => setVoucherNumber(e.target.value)}
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
                                 />
                             </div>
@@ -124,9 +172,21 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
                             <div>
                                 <label className="p-2">فرستنده</label>
                                 <input
+                                    name="senderName"
                                     type="text"
-                                    value={sender}
+                                    value={senderName}
                                     onChange={(e) => setSender(e.target.value)}
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="p-2">لقب فرستنده</label>
+                                <input
+                                    name="senderLastName"
+                                    type="text"
+                                    value={senderLastName}
+                                    onChange={(e) => setSenderLastName(e.target.value)}
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
                                 />
                             </div>
@@ -135,48 +195,139 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
                             <div>
                                 <label className="p-2">نمبر تماس فرستنده</label>
                                 <input
-                                    type="number"
-                                    value={senderPhone}
-                                    onChange={(e) => setSenderPhone(e.target.value ? parseInt(e.target.value) : "")}
+                                    name="senderPoneNumber"
+                                    type="text"
+                                    value={senderPhoneNumber}
+                                    onChange={(e) => setSenderPhoneNumber(e.target.value)}
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
+                                />
+                            </div>
+
+                            {/* senderIdCard */}
+                            <div>
+                                <label className="p-2">نمبر تذکره فرستنده</label>
+                                <input
+                                    name="senderIdCard"
+                                    type="text"
+                                    value={senderIdCard}
+                                    onChange={(e) => setSenderIdCard(e.target.value)}
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="p-2">آدرس فرستنده</label>
+                                <input
+                                    name="senderAddress"
+                                    type="text"
+                                    value={senderAddress}
+                                    onChange={(e) => setSenderAddress(e.target.value)}
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
+                                />
+                            </div>
+                            {/* senderLocation */}
+                            <div>
+                                <label className="p-2">موقیت فرستنده</label>
+                                <input
+                                    name="senderLocation"
+                                    type="text"
+                                    value={senderLocation}
+                                    onChange={(e) => setSenderLocation(e.target.value)}
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
+                                />
+                            </div>
+
+                            {/* receiverLocation */}
+                            <div>
+                                <label className="p-2">موقیت گیرنده</label>
+                                <input
+                                    name="receiverLoation"
+                                    type="text"
+                                    value={receiverLocation}
+                                    onChange={(e) => setReceiverLocation(e.target.value)}
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
                                 />
                             </div>
 
 
-                            {/* resiver */}
+                            {/* resiver name */}
                             <div>
                                 <label className="p-2">گیرنده</label>
                                 <input
+                                    name="receiverName"
                                     type="text"
-                                    value={resiver}
-                                    onChange={(e) => setResiver(e.target.value)}
+                                    value={receiverName}
+                                    onChange={(e) => setReceiverName(e.target.value)}
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
                                 />
                             </div>
+
+                            {/* receiverLastName */}
+                            <div>
+                                <label className="p-2">لقب گیرنده</label>
+                                <input
+                                    name="receiverLastName"
+                                    type="text"
+                                    value={receiverLastName}
+                                    onChange={(e) => setReceiverLastName(e.target.value)}
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
+                                />
+                            </div>
+
 
                             {/* resiverPhone */}
                             <div>
                                 <label className="p-2">نمبر تماس گیرنده</label>
                                 <input
-                                    type="number"
-                                    value={resiverPhone}
-                                    onChange={(e) => setResiverPhone(e.target.value ? parseInt(e.target.value) : "")}
+                                    name="receiverPhoneNumber"
+                                    type="text"
+                                    value={receiverPhoneNumber}
+                                    onChange={(e) => setReceiverPhoneNumber(e.target.value)}
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
                                 />
                             </div>
 
                             {/* resiverIDcard */}
                             <div>
-                                <label className="p-2">نمبر تذکره</label>
+                                <label className="p-2">نمبر تذکره گیرنده</label>
                                 <input
+                                    name="receiverIdCard"
                                     type="text"
-                                    value={IDcard}
-                                    onChange={(e) => setIDcard(e.target.value)}
+                                    value={receiverIdCard}
+                                    onChange={(e) => setReceiverIdCard(e.target.value)}
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
                                 />
                             </div>
 
+                            {/* receiverAddress */}
+                            <div>
+                                <label className="p-2">آدرس گیرنده</label>
+                                <input
+                                    name="receiverAddress"
+                                    type="text"
+                                    value={receiverAddress}
+                                    onChange={(e) => setReceiverAddress(e.target.value)}
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
+                                />
+                            </div>
 
+                            {/* branches */}
+                            <div className="">
+                                <label className="block font-bold ">نمایندگی ها</label>
+                                <select
+                                    name="user_id"
+                                    value={branch_id || ""}
+                                    onChange={(e) => setBranch_id(Number(e.target.value))}
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
+                                    required
+                                >
+                                    {branches.map((brand) => (
+                                        <option key={brand.id} value={brand.id}>
+                                            {brand.branchName}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
 
                             {/* currency */}
                             <div>
@@ -186,12 +337,13 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
                                         className="flex items-center justify-between bg-formInputBg border border-formInputBorder rounded-md p-2 cursor-pointer"
                                         onClick={() => setOpenFromCurrency(!openFromCurrency)}
                                     >
-                                        <span>{Currency}</span>
+                                        <span>{currency}</span>
                                         <MdArrowDropDown />
                                     </div>
                                     {openFromCurrency && (
                                         <div className="absolute w-full bg-formSelectBg border border-formInputBorder rounded-md shadow-lg z-10 max-h-48 overflow-y-auto">
                                             <input
+                                                name="currency"
                                                 type="text"
                                                 onChange={(e) => setCurrency(e.target.value)}
                                                 className="bg-formSelectBg p-2 w-full rounded-sm border-none focus:ring-0 outline-none sticky top-0"
@@ -217,121 +369,64 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
                             <div>
                                 <label className="p-2">مبلغ</label>
                                 <input
+                                    name="amountMoney"
                                     type="number"
-                                    value={amount}
-                                    onChange={(e) => setAmount(e.target.value ? parseFloat(e.target.value) : "")}
+                                    value={amountMoney}
+                                    onChange={(e) => setAmountMoney(e.target.value ? parseFloat(e.target.value) : "")}
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
                                 />
                             </div>
 
 
-                            {/* currentBrnch */}
-
-                            <div>
-                                <label className="block font-bold ">ازنمایندگی</label>
-                                <div className="relative">
-                                    <div
-                                        className="flex items-center justify-between bg-formInputBg border border-formInputBorder rounded-md p-2 cursor-pointer"
-                                        onClick={() => setOpenCurrentBranch(!openCurrentBranch)}
-                                    >
-                                        <span>{currentBranch}</span>
-                                        <MdArrowDropDown />
-                                    </div>
-                                    {openCurrentBranch && (
-                                        <div className="absolute w-full bg-formSelectBg border border-formInputBorder rounded-md shadow-lg z-10 max-h-48 overflow-y-auto">
-                                            <input
-                                                type="text"
-                                                onChange={(e) => setCurrentBranch(e.target.value)}
-                                                className="bg-formSelectBg p-2 w-full rounded-sm border-none focus:ring-0 outline-none sticky top-0"
-                                            />
-                                            {brachList.map((opt) => (
-                                                <div
-                                                    key={opt}
-                                                    onClick={() => {
-                                                        setCurrentBranch(opt);
-                                                        setOpenCurrentBranch(false);
-                                                    }}
-                                                    className="p-2 hover:bg-formSelectHover cursor-pointer"
-                                                >
-                                                    {opt}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-
-                            {/* toBranch */}
-                            <div>
-                                <label className="block font-bold ">به نمایندگی</label>
-                                <div className="relative">
-                                    <div
-                                        className="flex items-center justify-between bg-formInputBg border border-formInputBorder rounded-md p-2 cursor-pointer"
-                                        onClick={() => setOpenToBranch(!openToBranch)}
-                                    >
-                                        <span>{toBranch}</span>
-                                        <MdArrowDropDown />
-                                    </div>
-                                    {openToBranch && (
-                                        <div className="absolute w-full bg-formSelectBg border border-formInputBorder rounded-md shadow-lg z-10 max-h-48 overflow-y-auto">
-                                            <input
-                                                type="text"
-                                                onChange={(e) => setToBranch(e.target.value)}
-                                                className="bg-formSelectBg p-2 w-full rounded-sm border-none focus:ring-0 outline-none sticky top-0"
-                                            />
-                                            {brachList.map((opt) => (
-                                                <div
-                                                    key={opt}
-                                                    onClick={() => {
-                                                        setToBranch(opt);
-                                                        setOpenToBranch(false);
-                                                    }}
-                                                    className="p-2 hover:bg-formSelectHover cursor-pointer"
-                                                >
-                                                    {opt}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-
-                            {/* amountRate */}
+                            {/* amountCommission */}
                             <div>
                                 <label className="">مقدار کمیشن</label>
                                 <input
+                                    name="commission"
                                     type="number"
-                                    value={amountRate}
-                                    onChange={(e) => setAmountRate(e.target.value ? parseInt(e.target.value) : "")}
+                                    value={commission}
+                                    onChange={(e) => setCommission(e.target.value)}
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
                                 />
                             </div>
 
-
-                            {/* currencyRate */}
+                            {/* comment */}
                             <div>
-                                <label className="block font-bold ">واحید کمیشن</label>
+                                <label className="p-2">جزیات</label>
+                                <input
+                                    name="comment"
+                                    type="text"
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
+                                />
+                            </div>
+
+                            {/* status */}
+                            <div>
+                                <label className="block font-bold ">حالت حواله</label>
                                 <div className="relative">
                                     <div
                                         className="flex items-center justify-between bg-formInputBg border border-formInputBorder rounded-md p-2 cursor-pointer"
-                                        onClick={() => setOpenCurrencyRate(!openCurrencyRate)}
+                                        onClick={() => setOpenSatatus(!openStatus)}
                                     >
-                                        <span>{currencyRate}</span>
+                                        <span>{status}</span>
                                         <MdArrowDropDown />
                                     </div>
-                                    {openCurrencyRate && (
+                                    {openStatus && (
                                         <div className="absolute w-full bg-formSelectBg border border-formInputBorder rounded-md shadow-lg z-10 max-h-48 overflow-y-auto">
                                             <input
-                                                type="number"
-                                                onChange={(e) => setCurrencyRate(e.target.value)}
+                                                name="status"
+                                                type="text"
+                                                onChange={(e) => setStatus(e.target.value)}
                                                 className="bg-formSelectBg p-2 w-full rounded-sm border-none focus:ring-0 outline-none sticky top-0"
                                             />
-                                            {selectCurrency.map((opt) => (
+                                            {statusList.map((opt) => (
                                                 <div
                                                     key={opt}
                                                     onClick={() => {
-                                                        setCurrencyRate(opt);
-                                                        setOpenCurrencyRate(false);
+                                                        setStatus(opt);
+                                                        setOpenSatatus(false);
                                                     }}
                                                     className="p-2 hover:bg-formSelectHover cursor-pointer"
                                                 >
@@ -341,28 +436,55 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
                                         </div>
                                     )}
                                 </div>
-                            </div>
-
-                            {/* explain */}
-                            <div>
-                                <label className="p-2">جزیات</label>
-                                <input
-                                    type="text"
-                                    value={details}
-                                    onChange={(e) => setDetails(e.target.value)}
-                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
-                                />
                             </div>
 
                             {/* date */}
                             <div>
                                 <label className="p-2">تاریخ</label>
                                 <input
+                                    name="date"
                                     type="date"
                                     value={date}
                                     onChange={(e) => setDate(e.target.value)}
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
                                 />
+                            </div>
+
+
+                            {/*customerType */}
+                            <div>
+                                <label className="block font-bold ">نوع مشتری</label>
+                                <div className="relative">
+                                    <div
+                                        className="flex items-center justify-between bg-formInputBg border border-formInputBorder rounded-md p-2 cursor-pointer"
+                                        onClick={() => setOpenCustomerType(!openCustomerType)}
+                                    >
+                                        <span>{customerType}</span>
+                                        <MdArrowDropDown />
+                                    </div>
+                                    {openCustomerType && (
+                                        <div className="absolute w-full bg-formSelectBg border border-formInputBorder rounded-md shadow-lg z-10 max-h-48 overflow-y-auto">
+                                            <input
+                                                name="customerType"
+                                                type="text"
+                                                onChange={(e) => setCustomerType(e.target.value)}
+                                                className="bg-formSelectBg p-2 w-full rounded-sm border-none focus:ring-0 outline-none sticky top-0"
+                                            />
+                                            {TypeOfCustomer.map((opt) => (
+                                                <div
+                                                    key={opt}
+                                                    onClick={() => {
+                                                        setCustomerType(opt);
+                                                        setOpenCustomerType(false);
+                                                    }}
+                                                    className="p-2 hover:bg-formSelectHover cursor-pointer"
+                                                >
+                                                    {opt}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
                         </div>
@@ -381,4 +503,18 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
