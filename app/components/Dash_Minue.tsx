@@ -77,10 +77,15 @@ export default function Dash_Minue() {
                     onClick={() => setOpen(!open)}
                     className="inline-flex justify-between items-center w-full px-4 py-2 hover:bg-dashboardMinueOnHover font-bold"
                 >
-                    Approvals<span className="ml-2 text-[10px]">{open ? "▲" : "▼"}</span>
+                    Hawala Status<span className="ml-2 text-[10px]">{open ? "▲" : "▼"}</span>
                 </button>
                 {open && (
                     <div className="w-full shadow-lg text-black">
+
+                        <Link href="/hawala/AllHawala" className="block px-4 py-2 hover:bg-dashboardMinueOnHover" onClick={() => setSidebarOpen(false)}>
+                            All
+                        </Link>
+
                         <Link href="#" className="block px-4 py-2 hover:bg-dashboardMinueOnHover"
                             onClick={() => setSidebarOpen(false)}
                         >

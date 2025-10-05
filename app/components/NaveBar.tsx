@@ -11,6 +11,7 @@ import Hawala from './Hawala';
 import AddCustomer from './AddCustomer';
 import DepositPopup from './DepositPopup';
 import Outcome from './Outcome';
+import Income from './Income';
 
 
 
@@ -87,6 +88,15 @@ const Navbar = () => {
     }
 
 
+    const [isIncomePopupOpen, setIsIncomePopupOpen] = useState(false)
+    const openIncome = () => {
+        setIsIncomePopupOpen(true)
+        setIsOpen(!open)
+    }
+    const closeIncomePopup = () => {
+        setIsIncomePopupOpen(false)
+    }
+
     return (
         <nav className="">
 
@@ -146,6 +156,11 @@ const Navbar = () => {
                                 Outcome
                             </button>
                         </li>
+                        <li>
+                            <button onClick={openIncome} className="text-varWhite hover:text-naveBarHoverText w-full text-right">
+                                Income
+                            </button>
+                        </li>
 
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Faild</Link></li>
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Backup</Link></li>
@@ -184,12 +199,14 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
-                    <button onClick={openOutcome} className="text-naqibBlue w-full">
+                    <button onClick={openOutcome} className="text-naqibRed w-full">
                         Outcome
                     </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
-                    <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Backup</Link>
+                    <button onClick={openIncome} className="text-naqibBlue w-full">
+                        Income
+                    </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
                     <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Logout</Link>
@@ -230,8 +247,13 @@ const Navbar = () => {
                     <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Faild</Link>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
-                    <button onClick={openOutcome} className="text-naqibBlue w-full">
+                    <button onClick={openOutcome} className="text-naqibRed w-full">
                         Outcome
+                    </button>
+                </div>
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                    <button onClick={openIncome} className="text-naqibBlue w-full">
+                        Income
                     </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
@@ -263,6 +285,10 @@ const Navbar = () => {
             <Outcome
                 isOpen={isOutcomePopupOpen}
                 onClose={closeOutcomePopup}
+            />
+            <Income
+                isOpen={isIncomePopupOpen}
+                onClose={closeIncomePopup}
             />
 
         </nav>

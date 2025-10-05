@@ -32,7 +32,7 @@ export default function Outcome({ isOpen, onClose }: exchangeType) {
     useEffect(() => {
         const fetchCustomers = async () => {
             try {
-                const res = await fetch("http://localhost:8000/api/Customer");
+                const res = await fetch("http://localhost:8000/api/user");
                 if (!res.ok) {
                     throw new Error("Failed to fetch customers");
                 }
