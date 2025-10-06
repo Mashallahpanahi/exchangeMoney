@@ -50,7 +50,6 @@ export default function UpdateBranch() {
         e.preventDefault();
 
         try {
-
             const res = await fetch(`http://localhost:8000/api/Branch/${updateID}`, {
                 method: "PUT", //  manzor is put haman update ast"
                 headers: {

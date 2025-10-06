@@ -7,6 +7,11 @@
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { DashboardMinueCtx } from "../context";
+import { MdOutlineHomeWork } from "react-icons/md";
+import { MdManageAccounts } from "react-icons/md";
+import { FaJournalWhills } from "react-icons/fa";
+import { MdOutlineCurrencyExchange } from "react-icons/md";
+import { FaCodeBranch } from "react-icons/fa";
 
 export default function Dash_Minue() {
     const ctx = useContext(DashboardMinueCtx);
@@ -25,22 +30,25 @@ export default function Dash_Minue() {
 
 
             <div className="px-4 py-2 w-full hover:bg-dashboardMinueOnHover ">
+
                 <Link
                     href={'/dashboard'}
-                    className="font-bold"
+                    className="font-bold flex items-center gap-2 "
                     onClick={() => setSidebarOpen(false)}
-                >
+                ><span><MdOutlineHomeWork /></span>
                     Home
                 </Link>
             </div>
 
             <div className="px-4 py-2 w-full hover:bg-dashboardMinueOnHover ">
+
                 <Link
                     href={'/dashboard/management'}
-                    className="font-bold"
+                    className="font-bold flex items-center gap-2"
                     onClick={() => setSidebarOpen(false)}
                 >
-                    management
+                    <span><MdManageAccounts /></span>
+                    <span>management</span>
                 </Link>
             </div>
 
@@ -50,8 +58,10 @@ export default function Dash_Minue() {
                 <button
                     onClick={() => setOpenJournal(!openJournal)}
                     className="inline-flex justify-between items-center w-full px-4 py-2 hover:bg-dashboardMinueOnHover font-bold"
+
                 >
-                    Journal <span className="ml-2 text-[10px]">{openJournal ? "▲" : "▼"}</span>
+                    <span className="flex items-center gap-2"> <FaJournalWhills /> Journal</span>
+                    <span className="ml-2 text-[10px]">{openJournal ? "▲" : "▼"}</span>
                 </button>
                 {openJournal && (
                     <div className="w-full shadow-lg text-black">
@@ -77,7 +87,7 @@ export default function Dash_Minue() {
                     onClick={() => setOpen(!open)}
                     className="inline-flex justify-between items-center w-full px-4 py-2 hover:bg-dashboardMinueOnHover font-bold"
                 >
-                    Hawala Status<span className="ml-2 text-[10px]">{open ? "▲" : "▼"}</span>
+                    <span className="flex items-center gap-2"><MdOutlineCurrencyExchange /> Hawala Status</span><span className="ml-2 text-[10px]">{open ? "▲" : "▼"}</span>
                 </button>
                 {open && (
                     <div className="w-full shadow-lg text-black">
@@ -85,8 +95,9 @@ export default function Dash_Minue() {
                         <Link href="/hawala/AllHawala" className="block px-4 py-2 hover:bg-dashboardMinueOnHover" onClick={() => setSidebarOpen(false)}>
                             All
                         </Link>
+                        <span></span>
 
-                        <Link href="#" className="block px-4 py-2 hover:bg-dashboardMinueOnHover"
+                        {/* <Link href="#" className="block px-4 py-2 hover:bg-dashboardMinueOnHover"
                             onClick={() => setSidebarOpen(false)}
                         >
                             Pending Approvals
@@ -97,7 +108,7 @@ export default function Dash_Minue() {
                         </Link>
                         <Link href="#" className="block px-4 py-2 hover:bg-dashboardMinueOnHover" onClick={() => setSidebarOpen(false)}>
                             Rejected Transactions
-                        </Link>
+                        </Link> */}
                     </div>
                 )}
             </div>
@@ -107,7 +118,7 @@ export default function Dash_Minue() {
                     onClick={() => setOpenBranch(!openBranch)}
                     className="inline-flex justify-between items-center w-full px-4 py-2 hover:bg-dashboardMinueOnHover font-bold"
                 >
-                    Branches <span className="ml-2 text-[10px]">{openClass ? "▲" : "▼"}</span>
+                    <span className="flex items-center gap-2"><FaCodeBranch /> Branches</span>  <span className="ml-2 text-[10px]">{openClass ? "▲" : "▼"}</span>
                 </button>
                 {openBranch && (
                     <div className="w-full shadow-lg text-black">

@@ -100,14 +100,22 @@ export default function All() {
 
     return (
         <div className="w-full overflow-x-auto p-2 ">
-            <div className="flex justify-between items-center mb-1 mt-4 p-2">
+            <div className="flex justify-between items-center mb-1 mt-4 p-2 w-[500px] bg-gray-100 shadow-lg rounded-md">
                 <h1 className="text-xl font-semibold text-naqibBlue">All Hawala Info</h1>
+                <Link href={'/dashboard'}>
+                    <button
+                        className="bg-naqibBlue hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
+                    >
+                        <span> dashboard</span>
+                    </button>
+                </Link>
                 <button
                     onClick={toggleColumns}
                     className="bg-naqibBlue hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
                 >
                     {showAllColumns ? 'Show Less Columns' : 'Show All Columns'}
                 </button>
+
             </div>
 
             <div className="w-full">

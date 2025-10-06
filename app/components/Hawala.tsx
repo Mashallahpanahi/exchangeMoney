@@ -50,6 +50,8 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
     const TypeOfCustomer = ["دایم", "موفت"]
     const [loading, setLoading] = useState<boolean>(true);
 
+
+
     const [branches, setBranches] = useState<BranchType[]>([]);
 
 
@@ -77,6 +79,8 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
             fetchCustomers();
         }
     }, [isOpen]);
+
+
 
 
     if (!isOpen) return null;
