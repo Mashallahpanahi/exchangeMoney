@@ -12,6 +12,8 @@ import AddCustomer from './AddCustomer';
 import DepositPopup from './DepositPopup';
 import Outcome from './Outcome';
 import Income from './Income';
+import TotalCash from './TotalCash';
+
 
 
 
@@ -97,6 +99,19 @@ const Navbar = () => {
         setIsIncomePopupOpen(false)
     }
 
+
+
+    const [isTotalCashPopupOpen, setIsOpenTotalCash] = useState(false)
+    const openTotalCash = () => {
+        setIsOpenTotalCash(true)
+        setIsOpen(!open)
+    }
+    const closeTotalCashPopup = () => {
+        setIsOpenTotalCash(false)
+    }
+
+
+
     return (
         <nav className="">
 
@@ -133,11 +148,11 @@ const Navbar = () => {
                             </button>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <button onClick={openTransaction} className="text-varWhite hover:text-naveBarHoverText w-full text-right">
                                 Transaction
                             </button>
-                        </li>
+                        </li> */}
 
                         <li>
                             <button onClick={openHawala} className="text-varWhite hover:text-naveBarHoverText w-full text-right">
@@ -161,6 +176,11 @@ const Navbar = () => {
                                 Income
                             </button>
                         </li>
+                        <li>
+                            <button onClick={openTotalCash} className="text-varWhite hover:text-naveBarHoverText w-full text-right">
+                                Total_cash
+                            </button>
+                        </li>
 
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Faild</Link></li>
                         <li><Link href="#" onClick={toggleMenu} className="block w-full text-right">Backup</Link></li>
@@ -182,11 +202,11 @@ const Navbar = () => {
                         Exchange
                     </button>
                 </div>
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
+                {/* <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
                     <button onClick={openTransaction} className="text-naqibBlue w-full ">
                         Transaction
                     </button>
-                </div>
+                </div> */}
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
                     <button onClick={openHawala} className="text-naqibBlue w-full ">
                         Hawala
@@ -198,20 +218,31 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
-                    <button onClick={openOutcome} className="text-naqibRed w-full">
-                        Outcome
-                    </button>
-                </div>
+
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
                     <button onClick={openIncome} className="text-naqibBlue w-full">
                         Income
                     </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
-                    <Link className="text-[#1c58dd] block w-full h-full flex items-center justify-center" href={''}>Logout</Link>
+                    <button onClick={openTotalCash} className="text-naqibBlue w-full ">
+                        Total_cash
+                    </button>
+                </div>
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
+                    <button onClick={openOutcome} className="text-naqibRed w-full">
+                        Outcome
+                    </button>
+                </div>
+                <div className="flex shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                    <button className="text-naqibRed w-full ">
+                        Logout
+                    </button>
                 </div>
             </div>
+
+
+
 
 
             <div className='hidden lg:flex gap-4'>
@@ -227,11 +258,11 @@ const Navbar = () => {
                         Exchange
                     </button>
                 </div>
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                {/* <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <button onClick={openTransaction} className="text-naqibBlue w-full">
                         Transaction
                     </button>
-                </div>
+                </div> */}
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <button onClick={openHawala} className="text-naqibBlue w-full">
                         Hawala
@@ -246,25 +277,31 @@ const Navbar = () => {
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Faild</Link>
                 </div>
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
-                    <button onClick={openOutcome} className="text-naqibRed w-full">
-                        Outcome
-                    </button>
-                </div>
+
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <button onClick={openIncome} className="text-naqibBlue w-full">
                         Income
                     </button>
                 </div>
                 <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
-                    <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Logout</Link>
+                    <button onClick={openTotalCash} className="text-naqibBlue w-full ">
+                        Total_cash
+                    </button>
+                </div>
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                    <button onClick={openOutcome} className="text-naqibRed w-full">
+                        Outcome
+                    </button>
+                </div>
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                    <button className="text-naqibRed w-full ">
+                        Logout
+                    </button>
                 </div>
             </div>
 
             {/* پاپ‌آپ Deposit */}
             <DepositPopup isOpen={isDepositPopupOpen} onClose={closeDepositPopup} />
-
-
 
             <Exchanges
                 isOpen={isExchangePopupOpen}
@@ -289,6 +326,10 @@ const Navbar = () => {
             <Income
                 isOpen={isIncomePopupOpen}
                 onClose={closeIncomePopup}
+            />
+            <TotalCash
+                isOpen={isTotalCashPopupOpen}
+                onClose={closeTotalCashPopup}
             />
 
         </nav>

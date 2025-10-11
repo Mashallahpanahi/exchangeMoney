@@ -133,8 +133,8 @@ export default function UpdateHawalaPage() {
 
         try {
             const submitData = {
-                ...formData,
-                date: formData.date ? new Date(formData.date).toISOString() : new Date().toISOString()
+                ...formData
+
             };
 
             console.log("Submitting data:", submitData);

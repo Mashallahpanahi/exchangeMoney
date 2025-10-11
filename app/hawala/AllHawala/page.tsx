@@ -1,10 +1,12 @@
 'use client';
 
+import ShowAllColumns from "@/app/components/ShowAllColumns";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
+import { IoEyeSharp } from "react-icons/io5";
 
 export interface HawalaType {
     id: number,
@@ -50,32 +52,7 @@ export default function All() {
     }, []);
 
 
-    const visibleColumns = showAllColumns
-        ? [
-            'senderName',
-            'receiverName',
-            'amountMoney',
-            'voucherNumber',
-            'date',
-            'customerType',
-            'currency',
-            'comment',
-            'commission',
-            'receiverIdCard',
-            'receiverAddress',
-            'receiverPhoneNumber',
-            'receiverLastName',
-            'senderLastName',
-            'senderPhoneNumber',
-            'senderIdCard',
-            'senderAddress',
-            'branch_id',
-            'senderLocation',
-            'receiverLocation',
-            'Delete',
-            'Edit'
-        ]
-        : ['senderName', 'receiverName', 'amountMoney', 'voucherNumber', 'Delete', 'Edit'];
+    const visibleColumns = ['senderName', 'receiverName', 'amountMoney', 'voucherNumber', 'Delete', 'Edit', 'showAll'];
 
     const toggleColumns = () => {
         setShowAllColumns(!showAllColumns);
@@ -100,7 +77,7 @@ export default function All() {
 
     return (
         <div className="w-full overflow-x-auto p-2 ">
-            <div className="flex justify-between items-center mb-1 mt-4 p-2 w-[500px] bg-gray-100 shadow-lg rounded-md">
+            <div className="flex justify-between items-center mb-1 mt-4 p-2 w-[300px] bg-gray-100 shadow-lg rounded-md">
                 <h1 className="text-xl font-semibold text-naqibBlue">All Hawala Info</h1>
                 <Link href={'/dashboard'}>
                     <button
@@ -109,13 +86,6 @@ export default function All() {
                         <span> dashboard</span>
                     </button>
                 </Link>
-                <button
-                    onClick={toggleColumns}
-                    className="bg-naqibBlue hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
-                >
-                    {showAllColumns ? 'Show Less Columns' : 'Show All Columns'}
-                </button>
-
             </div>
 
             <div className="w-full">
@@ -142,11 +112,12 @@ export default function All() {
                                             <td key={col} className="p-2 text-center">
                                                 <MdDeleteForever className="text-red-500 cursor-pointer text-2xl mx-auto"
                                                     onClick={() => handleDelete(h.id)}
-                                                    size={24}
+                                                    size={22}
                                                 />
                                             </td>
                                         );
-                                    } else if (col === "Edit") {
+                                    }
+                                    else if (col === "Edit") {
                                         return (
                                             <td key={col} className="p-2 text-center">
                                                 <Link href={`/hawala/AllHawala/${h.id}`}>
@@ -155,7 +126,22 @@ export default function All() {
                                             </td>
 
                                         );
-                                    } else {
+                                    } else if (col === "showAll") {
+                                        return (
+                                            <td key={col} className="p-2 text-center">
+                                                <Link href={`/hawala/showAllColumns/${h.id}`}>
+                                                    <span className="flex items-center justify-center">
+                                                        <IoEyeSharp size={22} />
+                                                    </span>
+                                                </Link>
+
+                                            </td>
+
+                                        );
+                                    }
+
+
+                                    else {
                                         return (
                                             <td key={col} className=" px-2 ">
                                                 {h[col as keyof HawalaType] ?? '-'}

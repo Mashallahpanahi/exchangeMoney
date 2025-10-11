@@ -1,7 +1,4 @@
 
-
-
-
 'use client'
 
 import Link from "next/link";
@@ -33,9 +30,9 @@ export default function Dash_Minue() {
 
                 <Link
                     href={'/dashboard'}
-                    className="font-bold flex items-center gap-2 "
+                    className="font-bold flex items-center gap-4 "
                     onClick={() => setSidebarOpen(false)}
-                ><span><MdOutlineHomeWork /></span>
+                ><span>< MdOutlineHomeWork className="size-6" /></span>
                     Home
                 </Link>
             </div>
@@ -44,15 +41,13 @@ export default function Dash_Minue() {
 
                 <Link
                     href={'/dashboard/management'}
-                    className="font-bold flex items-center gap-2"
+                    className="font-bold flex items-center gap-4"
                     onClick={() => setSidebarOpen(false)}
                 >
-                    <span><MdManageAccounts /></span>
+                    <span><MdManageAccounts className="size-6" /></span>
                     <span>management</span>
                 </Link>
             </div>
-
-
 
             <div>
                 <button
@@ -60,7 +55,7 @@ export default function Dash_Minue() {
                     className="inline-flex justify-between items-center w-full px-4 py-2 hover:bg-dashboardMinueOnHover font-bold"
 
                 >
-                    <span className="flex items-center gap-2"> <FaJournalWhills /> Journal</span>
+                    <span className="flex items-center gap-4"> <FaJournalWhills className="size-6" />Journal</span>
                     <span className="ml-2 text-[10px]">{openJournal ? "▲" : "▼"}</span>
                 </button>
                 {openJournal && (
@@ -76,18 +71,13 @@ export default function Dash_Minue() {
                     </div>
                 )}
             </div>
-
-
-
-
-
-
             <div>
                 <button
                     onClick={() => setOpen(!open)}
                     className="inline-flex justify-between items-center w-full px-4 py-2 hover:bg-dashboardMinueOnHover font-bold"
                 >
-                    <span className="flex items-center gap-2"><MdOutlineCurrencyExchange /> Hawala Status</span><span className="ml-2 text-[10px]">{open ? "▲" : "▼"}</span>
+                    <span className="flex items-center gap-4"><MdOutlineCurrencyExchange className="size-6" /> Hawala Status</span>
+                    <span className="ml-2 text-[10px]">{open ? "▲" : "▼"}</span>
                 </button>
                 {open && (
                     <div className="w-full shadow-lg text-black">
@@ -118,7 +108,7 @@ export default function Dash_Minue() {
                     onClick={() => setOpenBranch(!openBranch)}
                     className="inline-flex justify-between items-center w-full px-4 py-2 hover:bg-dashboardMinueOnHover font-bold"
                 >
-                    <span className="flex items-center gap-2"><FaCodeBranch /> Branches</span>  <span className="ml-2 text-[10px]">{openClass ? "▲" : "▼"}</span>
+                    <span className="flex items-center gap-4"><FaCodeBranch className="size-6" /> Branches</span>  <span className="ml-2 text-[10px]">{openClass ? "▲" : "▼"}</span>
                 </button>
                 {openBranch && (
                     <div className="w-full shadow-lg text-black">
