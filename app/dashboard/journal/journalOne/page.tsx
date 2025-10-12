@@ -1,143 +1,257 @@
 
-const journalOneData: jounalOneDateType[] = [
-    { id: 1, cerrency: "All cash", Usd: 400, Af: 2800, Kldar: 900, Darham: 0, Uroe: 0 },
-    { id: 2, cerrency: "YesterDay", Usd: 400, Af: 2800, Kldar: 900, Darham: 0, Uroe: 0 }
 
-]
+'use client'
+import axios from "axios"
+import { useEffect, useState } from "react"
 
-const creditPartHeader = ["number", "Date", "Details", "دلر", "افغانی", "کلدار", "درهم", "یورو", "توسط", "حزف"]
-const creditPartData: creditPartDataType[] = [
-    { number: 1, date: "2024", details: "kkkkkk", usd: 22, af: 300, Kaldar: 900, darham: 99, u: 88, by: "adim", delete: "icon" },
-    { number: 2, date: "2024", details: "kkkkkk", usd: 22, af: 300, Kaldar: 900, darham: 99, u: 88, by: "adim", delete: "icon" },
-]
-
-
-export interface creditPartDataType {
-    number: number, date: string, details: string, usd: number, af: number, Kaldar: number, darham: number, u: number, by: string, delete: string
-}
-export interface jounalOneDateType {
+export interface depositW {
     id: number,
-    cerrency: string,
-    Usd: number,
-    Af: number,
-    Kldar: number,
-    Darham: number,
-    Uroe: number
+    date: string,
+    transactionType: string,
+    customer_id: number,
+    currency: string
 }
 
-export default function journalOne() {
+export interface Customer {
+    id: number,
+    name: string,
+
+}
+
+const creditPartHeader = ["Id", "customer", "transactionType", "currency", "date"]
+
+export default function JournalOne() {
+    const [journalData, setJournalData] = useState<depositW[]>([])
+    const [creditPart, setCreditPart] = useState<depositW[]>([])
+    const [debitPart, setDebitPart] = useState<depositW[]>([])
+    const [allCustomer, setAllCustomer] = useState<Customer[]>([])
+
+    useEffect(() => {
+        const fetching = async () => {
+            try {
+                const customerRes = await axios.get<Customer[]>('http://localhost:8000/api/Customer')
+                if (!customerRes.data) throw new Error("Failed to fetch customer data")
+                setAllCustomer(customerRes.data)
+
+
+                const journalRes = await axios.get<depositW[]>('http://localhost:8000/api/journal')
+                if (!journalRes.data) throw new Error("Failed to fetch journal data")
+
+                setJournalData(journalRes.data)
+
+                const creditData = journalRes.data.filter(item => item.transactionType === 'رسیدگی')
+                const debitData = journalRes.data.filter(item => item.transactionType === 'بردگی')
+                setCreditPart(creditData)
+                setDebitPart(debitData)
+
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetching()
+    }, [])
+
+    // Function to find customer name by ID
+    const getCustomerName = (customerId: number): string => {
+        const customer = allCustomer.find(customer => customer.id === customerId)
+        return customer ? customer.name : `Customer ${customerId}`
+    }
+
     return (
-        <div className="w-full ml-4 ">
-            <div id="firsPar_currence" className="">
-                <table className="border border-naqibBlue w-full">
-                    <thead className="border border-naqibBlue  bg-varWhite">
-                        <tr className=" ">
-                            <th className=" p-2 ">Currency</th>
-                            <th>دالر</th>
-                            <th>افغانی</th>
-                            <th>کلدار</th>
-                            <th>درهم</th>
-                            <th>یورو</th>
+        <div className="m-2 grid sm:grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+            {/* Credit Part Table */}
+            <div className="w-full">
+                <h2 className="text-xl font-bold mb-4 text-center">Credit part (رسیدگی)</h2>
+                <table className="border border-black  text-center w-full">
+                    <thead>
+                        <tr>
+                            {creditPartHeader.map((header, index) => (
+                                <th key={index} className="p-2 text-white bg-black border border-black">
+                                    {header}
+                                </th>
+                            ))}
                         </tr>
                     </thead>
                     <tbody>
-
-                        {journalOneData.map(item => (
-                            <tr key={item.id} className="text-tableText">
-                                <td className={`p-2  text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.cerrency}</td>
-                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.Usd}</td>
-                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.Af}</td>
-                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.Kldar}</td>
-                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.Darham}</td>
-                                <td className={`p-2 text-center rounded-md ${item.id % 2 === 0 ? "bg-tableOddBg" : "bg-tableEvenBg"}`}>{item.Uroe}</td>
+                        {creditPart.map(item => (
+                            <tr key={item.id} className="border border-black">
+                                <td className="p-4 border border-black">{item.id}</td>
+                                <td className="border border-black">{getCustomerName(item.customer_id)}</td>
+                                <td className="border border-black">{item.transactionType}</td>
+                                <td className="border border-black">{item.currency}</td>
+                                <td className="border border-black">{item.date}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                {creditPart.length === 0 && (
+                    <p className="text-center p-4">No credit transactions found</p>
+                )}
             </div>
 
-
-
-
-
-            <div id="bootPart" className="flex sm:flex-col lg:flex-row">
-
-                <div className="w-full">
-                    <div className="w-full text-center">
-                        <h1>Credit Part</h1>
-                    </div>
-                    <div className="w-full">
-                        <table className="border border-black w-full">
-                            <thead>
-                                <tr key={"1"}>
-                                    {creditPartHeader.map(item => (
-                                        <th className="p-2 text-varWhite bg-varBlack">{item}</th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {creditPartData.map(item => (
-                                    <tr className="border border-tableBorder">
-                                        <td className="p-4">{item.number}</td>
-                                        <td>{item.date}</td>
-                                        <td>{item.details}</td>
-                                        <td>{item.usd}</td>
-                                        <td>{item.af}</td>
-                                        <td>{item.Kaldar}</td>
-                                        <td>{item.darham}</td>
-                                        <td>{item.u}</td>
-                                        <td>{item.by}</td>
-                                        <td>{item.delete}</td>
-
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-
-                {/* debit Part */}
-
-                <div className="w-full">
-                    <div className="w-full text-center">
-                        <h1>Debit Part</h1>
-                    </div>
-                    <div className="w-full">
-                        <table className="border border-tableBorder w-full">
-                            <thead>
-                                <tr key={"1"}>
-                                    {creditPartHeader.map(item => (
-                                        <th className="p-2 text-varWhite bg-varBlack">{item}</th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {creditPartData.map(item => (
-                                    <tr className="border border-tableBorder">
-                                        <td className="p-4">{item.number}</td>
-                                        <td>{item.date}</td>
-                                        <td>{item.details}</td>
-                                        <td>{item.usd}</td>
-                                        <td>{item.af}</td>
-                                        <td>{item.Kaldar}</td>
-                                        <td>{item.darham}</td>
-                                        <td>{item.u}</td>
-                                        <td>{item.by}</td>
-                                        <td>{item.delete}</td>
-
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
+            {/* Debit Part Table */}
+            <div>
+                <h2 className="text-xl font-bold mb-4   text-center">Debit part (بردگی)</h2>
+                <table className="border border-black w-full">
+                    <thead>
+                        <tr>
+                            {creditPartHeader.map((header, index) => (
+                                <th key={index} className="p-2 text-white bg-black border border-black">
+                                    {header}
+                                </th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {debitPart.map(item => (
+                            <tr key={item.id} className="border border-black">
+                                <td className="p-4 border border-black">{item.id}</td>
+                                <td className="border border-black">{getCustomerName(item.customer_id)}</td>
+                                <td className="border border-black">{item.transactionType}</td>
+                                <td className="border border-black">{item.currency}</td>
+                                <td className="border border-black">{item.date}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                {debitPart.length === 0 && (
+                    <p className="text-center p-4">No debit transactions found</p>
+                )}
             </div>
-
-
-
-        </div >
+        </div>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 'use client'
+// import axios from "axios"
+// import { useEffect, useState } from "react"
+
+
+// export interface depositW {
+//     id: number,
+//     date: string,
+//     transactionType: string,
+//     customer_id: number,
+//     currency: string
+// }
+
+// const creditPartHeader = ["Id", "customer", "transactionType", "currency", "date"]
+
+
+// export default function JournalOne() {
+//     const [journalData, setJournalData] = useState<depositW[]>([])
+//     const [creditPart, setCreditPart] = useState<depositW[]>([])
+//     const [debitPart, setDebitPart] = useState<depositW[]>([])
+
+
+//     const [allCustomer, setAllCustomer] = useState();
+
+//     useEffect(() => {
+//         const fetching = async () => {
+//             try {
+//                 const res = await axios.get<depositW[]>('http://localhost:8000/api/journal')
+//                 if (!res.data) throw new Error("Failed to fetch journal data")
+//                 setJournalData(res.data)
+
+//                 const creditData = res.data.filter(item => item.transactionType === 'رسیدگی')
+//                 const debitData = res.data.filter(item => item.transactionType === 'بردگی')
+//                 setCreditPart(creditData)
+//                 setDebitPart(debitData)
+
+//                 const res1 = await axios.get('http://localhost:8000/api/Customer')
+//                 if (!res1) throw new Error("faild to fetch customer")
+//                 setAllCustomer(res1.data)
+//             } catch (error) {
+//                 console.error(error)
+//             }
+//         }
+//         fetching()
+//     }, [])
+
+
+//     return (
+//         <div>
+//             {/* Credit Part Table */}
+//             <div className="mb-8">
+//                 <h2 className="text-xl font-bold mb-4">Credit Transactions (رسیدگی)</h2>
+//                 <table className="border border-black w-full">
+//                     <thead>
+//                         <tr>
+//                             {creditPartHeader.map((header, index) => (
+//                                 <th key={index} className="p-2 text-white bg-black border border-black">
+//                                     {header}
+//                                 </th>
+//                             ))}
+//                         </tr>
+//                     </thead>
+//                     <tbody>
+//                         {creditPart.map(item => (
+//                             <tr key={item.id} className="border border-black">
+//                                 <td className="p-4 border border-black">{item.id}</td>
+//                                 <td className="border border-black">{item.customer_id == allCustomer.id ? allCustomer.name : ""}</td>
+//                                 <td className="border border-black">{item.transactionType}</td>
+//                                 <td className="border border-black">{item.currency}</td>
+//                                 <td className="border border-black">{item.date}</td>
+//                             </tr>
+//                         ))}
+//                     </tbody>
+//                 </table>
+//                 {creditPart.length === 0 && (
+//                     <p className="text-center p-4">No credit transactions found</p>
+//                 )}
+//             </div>
+
+//             {/* Debit Part Table */}
+//             <div>
+//                 <h2 className="text-xl font-bold mb-4">Debit Transactions (بردگی)</h2>
+//                 <table className="border border-black w-full">
+//                     <thead>
+//                         <tr>
+//                             {creditPartHeader.map((header, index) => (
+//                                 <th key={index} className="p-2 text-white bg-black border border-black">
+//                                     {header}
+//                                 </th>
+//                             ))}
+//                         </tr>
+//                     </thead>
+//                     <tbody>
+//                         {debitPart.map(item => (
+//                             <tr key={item.id} className="border border-black">
+//                                 <td className="p-4 border border-black">{item.id}</td>
+//                                 <td className="border border-black">{item.customer_id}</td>
+//                                 <td className="border border-black">{item.transactionType}</td>
+//                                 <td className="border border-black">{item.currency}</td>
+//                                 <td className="border border-black">{item.date}</td>
+//                             </tr>
+//                         ))}
+//                     </tbody>
+//                 </table>
+//                 {debitPart.length === 0 && (
+//                     <p className="text-center p-4">No debit transactions found</p>
+//                 )}
+//             </div>
+//         </div>
+//     )
+// }

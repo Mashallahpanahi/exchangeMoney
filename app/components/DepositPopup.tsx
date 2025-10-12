@@ -25,7 +25,7 @@ export default function DepositPopup({ isOpen, onClose }: exchangeType) {
     const [customers, setCustomers] = useState<Customer[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
-    const selectCurrency = ["دالر", "کلدار", "افغانی", "درهم", "یورو"];
+    const selectCurrency = ["دالر", "کلدار", "افغانی", "تومن",];
     const slectChangeType = ["رسیدگی", "بردگی"];
 
 
@@ -207,7 +207,7 @@ export default function DepositPopup({ isOpen, onClose }: exchangeType) {
                                     type="number"
                                     value={amountMoney}
                                     onChange={(e) => setAmountMoney(e.target.value)}
-                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none z-100"
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none z-1000"
                                 />
                             </div>
 

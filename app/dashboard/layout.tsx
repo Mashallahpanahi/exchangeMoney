@@ -67,13 +67,6 @@ export default function DashboardLayout({
                     </div>
                 )}
 
-
-
-
-
-
-
-
                 {/* Top navbar */}
                 <div>
 
