@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CiFaceSmile } from "react-icons/ci";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Register() {
     const router = useRouter();
@@ -14,6 +15,7 @@ export default function Register() {
     const [email, setEmail] = useState<string>("")
     const [password_confirmation, setPassword_confirmation] = useState<string>("")
     const [loading, setLoading] = useState<boolean>(false)
+    const [showPassword, setShowPassword] = useState<boolean>(false)
 
     const [errors, setErrors] = useState<{
         name?: string[];
@@ -74,6 +76,13 @@ export default function Register() {
         }
     }
 
+    const taggleEyePassword = () => {
+        setShowPassword(!showPassword)
+    }
+
+
+
+
     return (
         <div className="h-[100vh] flex items-center bg-[#348BC3]">
             <div className="w-[400px] rounded-lg h-[600px] bg-[#348BC3] border border-[#5EB1E5] shadow-inner shadow-white mx-auto flex flex-col items-center ">
@@ -107,7 +116,7 @@ export default function Register() {
                         </div>
                     )}
 
-                    <input
+                    {/* <input
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
                         name="password"
@@ -116,7 +125,24 @@ export default function Register() {
                             }`}
                         type="password"
                         placeholder="Password"
-                    />
+                    /> */}
+                    <div className="relative mt-8">
+                        <input
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            required
+                            className="w-full text-center p-2 bg-[#348BC3] border-b-2 border-[#5EB1E5] text-white  pr-10"
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Password"
+                        />
+                        <button
+                            type="button"
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors"
+                            onClick={taggleEyePassword}
+                        >
+                            {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                        </button>
+                    </div>
                     {errors.password && (
                         <div className="text-red-500 text-sm text-right">
                             {errors.password[0]}
