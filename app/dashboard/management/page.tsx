@@ -1,4 +1,6 @@
-
+import Link from "next/link";
+import { FaUsers } from "react-icons/fa";
+import { PiHandDepositFill } from "react-icons/pi";
 
 
 
@@ -14,11 +16,6 @@ export default function ManagePage() {
                 {/* Left Card */}
                 <div className="bg-white flex flex-col gap-2 w-full rounded-md p-2 shadow-md">
                     <h1 className="font-bold p-4 text-naqibBlue">Welcome to AAA Money Transaction</h1>
-                    <input
-                        className="mx-4 bg-slate-200 p-2 rounded-md"
-                        type="text"
-                        placeholder="Enter the rate"
-                    />
                 </div>
 
 
@@ -40,33 +37,41 @@ export default function ManagePage() {
             </div>
 
 
-            <div className="bg-varWhite grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full mt-4 p-4 h-screen">
-
-                <div className="shadow-xl sm:w-full w-3/5 mx-auto m-2 rounded-md  p-4">
-                    <h1 className="font-bold text-naqibBlue ">All info about your branch.</h1>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
+            <div className="bg-varWhite grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full mt-4 p-4 ">
+                <div className="shadow-xl sm:w-full w-full mx-auto m-2 rounded-md  p-4 flex items-center justify-center">
+                    <Link href={'/outsiteDashboard/management2/showAndEditCustomer'}>
+                        <div className="flex justify-between w-full items-center">
+                            <button className="font-bold text-naqibBlue mr-4 ml-4">Click to show All customers :  </button>
+                            <div>
+                                <FaUsers className="text-naqibBlue size-20" />
+                            </div>
+                        </div>
+                    </Link>
                 </div>
 
-                <div className="shadow-xl sm:w-full w-3/5 mx-auto m-2 rounded-md  p-4">
-                    <h1 className="font-bold text-naqibBlue ">All info about your branch.</h1>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
+                <div className="shadow-xl  w-full mx-auto m-2 rounded-md  p-4 flex items-center justify-center">
+                    <Link href={'/outsiteDashboard/management2/showAndEditDepositWithdraw'}>
+                        <div className="flex justify-between w-full items-center ">
+                            <button className="font-bold text-naqibBlue mr-4 ml-4">Deposit Withdraw :  </button>
+                            <div>
+                                <PiHandDepositFill className="text-naqibBlue size-20" />
+                            </div>
+                        </div>
+                    </Link>
                 </div>
-                <div className="shadow-xl sm:w-full w-3/5 mx-auto m-2 rounded-md  p-4">
-                    <h1 className="font-bold text-naqibBlue ">All info about your branch.</h1>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
-                    <h2>this is some text about this branch</h2>
-                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
 

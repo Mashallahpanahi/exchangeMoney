@@ -24,7 +24,7 @@ export default function DashboardBox() {
 
                     </div>
                 </div>
-                <div className="w-full h-[4px] bg-gradient-to-r from-green-500 to-yellow-200 rounded-full mt-4"></div>
+                {/* <div className="w-full h-[4px] bg-gradient-to-r from-green-500 to-yellow-200 rounded-full mt-4"></div> */}
 
             </div>
 
