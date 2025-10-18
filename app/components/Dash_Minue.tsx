@@ -60,7 +60,7 @@ export default function Dash_Minue() {
                 </button>
                 {openJournal && (
                     <div className="w-full shadow-lg text-black">
-                        <Link href="/dashboard/journal/journalOne" className="block px-4 py-2 hover:bg-dashboardMinueOnHover"
+                        <Link href="/outsiteDashboard/journal/journalOne" className="block px-4 py-2 hover:bg-dashboardMinueOnHover"
                             onClick={() => setSidebarOpen(false)}
                         >
                             Journal 1

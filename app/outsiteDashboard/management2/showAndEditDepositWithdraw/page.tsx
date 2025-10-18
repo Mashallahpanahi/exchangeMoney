@@ -180,6 +180,12 @@ export default function ShowAndEditDepositWithdraw() {
                     <p className="text-center p-4">No debit transactions found</p>
                 )}
             </div>
+
+            <div>
+                <Link href={'/dashboard/management'}>
+                    <button className="bg-green-300 p-2 rounded-md font-semibold w-56 hover:bg-green-600">Dashboard</button>
+                </Link>
+            </div>
         </div>
     )
 }

@@ -88,6 +88,11 @@ export default function Exchanges({ isOpen, onClose }: exchangeType) {
             if (!res.ok) {
                 throw new Error("Failed to submit exchange rate");
             }
+            if (fromCurrency === toCurrency) {
+                alert("ارز های یگسان مورید قبول نیست")
+                return
+            }
+
 
             const data = await res.json();
             console.log("✅ Success:", data);

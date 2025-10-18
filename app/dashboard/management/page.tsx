@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaUsers } from "react-icons/fa";
 import { PiHandDepositFill } from "react-icons/pi";
-
+import { FaExchangeAlt } from "react-icons/fa";
 
 
 export default function ManagePage() {
@@ -43,7 +43,7 @@ export default function ManagePage() {
                         <div className="flex justify-between w-full items-center">
                             <button className="font-bold text-naqibBlue mr-4 ml-4">Click to show All customers :  </button>
                             <div>
-                                <FaUsers className="text-naqibBlue size-20" />
+                                <FaUsers className="text-naqibBlue size-10" />
                             </div>
                         </div>
                     </Link>
@@ -54,7 +54,18 @@ export default function ManagePage() {
                         <div className="flex justify-between w-full items-center ">
                             <button className="font-bold text-naqibBlue mr-4 ml-4">Deposit Withdraw :  </button>
                             <div>
-                                <PiHandDepositFill className="text-naqibBlue size-20" />
+                                <PiHandDepositFill className="text-naqibBlue size-10" />
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+
+                <div className="shadow-xl  w-full mx-auto m-2 rounded-md  p-4 flex items-center justify-center">
+                    <Link href={'/outsiteDashboard/management2/showExchange'}>
+                        <div className="flex justify-between w-full items-center ">
+                            <button className="font-bold text-naqibBlue mr-4 ml-4">Exchange :  </button>
+                            <div>
+                                <FaExchangeAlt className="text-naqibBlue size-10" />
                             </div>
                         </div>
                     </Link>

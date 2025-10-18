@@ -10,6 +10,7 @@ export interface depositW {
     transactionType: string,
     customer_id: number,
     currency: string
+    amountMoney: string
 }
 
 export interface Customer {
@@ -18,7 +19,7 @@ export interface Customer {
 
 }
 
-const creditPartHeader = ["Id", "customer", "transactionType", "currency", "date"]
+const creditPartHeader = ["Id", "customer", "transactionType", "currency", "amountMoney", "date"]
 
 export default function JournalOne() {
     const [journalData, setJournalData] = useState<depositW[]>([])
@@ -57,6 +58,8 @@ export default function JournalOne() {
         return customer ? customer.name : `Customer ${customerId}`
     }
 
+
+
     return (
         <div className="m-2 grid sm:grid-cols-1 lg:grid-cols-2 gap-8 w-full">
             {/* Credit Part Table */}
@@ -79,6 +82,7 @@ export default function JournalOne() {
                                 <td className="border border-black">{getCustomerName(item.customer_id)}</td>
                                 <td className="border border-black">{item.transactionType}</td>
                                 <td className="border border-black">{item.currency}</td>
+                                <td className="border border-black">{item.amountMoney}</td>
                                 <td className="border border-black">{item.date}</td>
                             </tr>
                         ))}
@@ -104,11 +108,12 @@ export default function JournalOne() {
                     </thead>
                     <tbody>
                         {debitPart.map(item => (
-                            <tr key={item.id} className="border border-black">
+                            <tr key={item.id} className="border border-black text-center">
                                 <td className="p-4 border border-black">{item.id}</td>
                                 <td className="border border-black">{getCustomerName(item.customer_id)}</td>
                                 <td className="border border-black">{item.transactionType}</td>
                                 <td className="border border-black">{item.currency}</td>
+                                <td className="border border-black">{item.amountMoney}</td>
                                 <td className="border border-black">{item.date}</td>
                             </tr>
                         ))}
