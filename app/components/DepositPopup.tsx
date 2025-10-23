@@ -96,7 +96,7 @@ export default function DepositPopup({ isOpen, onClose }: exchangeType) {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-varWhite rounded-lg shadow-lg w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+            <div className="bg-varWhite rounded-lg shadow-lg sm:w-full md:w-[700px] lg:w-[1000px] sm:h-full md:h-[500px] overflow-scroll flex flex-col">
                 <div className="flex items-center justify-between p-6 border-b border-gray-200 flex-shrink-0">
                     <h2 className="text-lg font-semibold">ثبت بردگی و رسیدگی</h2>
                     <button
@@ -107,9 +107,9 @@ export default function DepositPopup({ isOpen, onClose }: exchangeType) {
                     </button>
                 </div>
 
-                <div className="overflow-y-auto flex-1 p-6">
+                <div className=" flex-1 p-6">
                     <form onSubmit={handleSubmit}>
-                        <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto flex-1 p-6">
+                        <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4  flex-1 p-6">
 
                             <div className="">
                                 <label className="block font-bold p-2">مشتری</label>

@@ -7,10 +7,10 @@ import { cache, useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
 export default function CircleChart() {
-    const [dolar, setDolar] = useState(0)
-    const [afghani, setAfghani] = useState(0)
-    const [toman, setToman] = useState(0)
-    const [kaldar, setKaldar] = useState(0);
+    const [dolar, setDolar] = useState<number>(0)
+    const [afghani, setAfghani] = useState<number>(0)
+    const [toman, setToman] = useState<number>(0)
+    const [kaldar, setKaldar] = useState<number>(0);
 
     useEffect(() => {
         try {
@@ -34,7 +34,7 @@ export default function CircleChart() {
 
 
     const salesData = [
-        { name: '$ Dollar', value: dolar, percentage: total > 0 ? (dolar / total * 100) : 0, color: ' #16a34a' },
+        { name: 'Dollar', value: dolar, percentage: total > 0 ? (dolar / total * 100) : 0, color: ' #16a34a' },
         { name: 'Afghani', value: afghani, percentage: total > 0 ? (afghani / total * 100) : 0, color: '#f97316' },
         { name: 'Toman', value: toman, percentage: total > 0 ? (toman / total * 100) : 0, color: '#2563eb' },
         { name: 'PKR', value: kaldar, percentage: total > 0 ? (kaldar / total * 100) : 0, color: '#fde047' },
@@ -52,6 +52,9 @@ export default function CircleChart() {
         }
         return null;
     };
+
+
+
 
     return (
         <div className="bg-white rounded-md border border-gray-200 p-6 sm:w-full md:w-[500px] lg:w-[700px]  h-[400px]">
@@ -108,7 +111,7 @@ export default function CircleChart() {
                                 style={{ backgroundColor: item.color }}
                             ></div>
                             <span className="text-sm text-gray-600">{item.name}</span>
-                            <span className='font-semibold'>{item.value}</span>
+                            <span className='font-semibold'>{item.value} </span>
                         </div>
                         <span className="text-sm font-medium text-gray-900">{item.percentage.toFixed(1)}%</span>
                     </div>

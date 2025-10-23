@@ -11,11 +11,11 @@ export default function Exchanges({ isOpen, onClose }: exchangeType) {
 
     const [rate, setRate] = useState<string>("");
     const [amountMoney, setAmountMoney] = useState<string>("");
-    const [buy_rate, setBuyRate] = useState<string>("")
-    const [sell_rate, setSellRate] = useState<string>("")
+    const [exchangeStatus, setExchangeStatus] = useState<string>("خرید")
     const [exchangeWith, setExchangeWith] = useState<string>("")
     const [exchangeWithPhoneNumber, setExchangeWithPhoneNumber] = useState<string>("")
-
+    // const [buy_rate, setBuyRate] = useState<string>("")
+    // const [sell_rate, setSellRate] = useState<string>("")
 
     useEffect(
         function () {
@@ -38,6 +38,7 @@ export default function Exchanges({ isOpen, onClose }: exchangeType) {
     const [openFromCurrency, setOpenFromCurrency] = useState(false)
     const [openToCurrency, setOpenToCurrency] = useState(false)
     const [openChangeType, setOpenChangeType] = useState(false)
+    const [openExchangeStatus, setOpenExchangeStatus] = useState(false)
 
 
     const [fromCurrency, setFromCurrency] = useState("دالر");
@@ -51,6 +52,7 @@ export default function Exchanges({ isOpen, onClose }: exchangeType) {
 
     const selectCurrency = ["دالر", "کلدار", "افغانی", "تومن"];
     const slectChangeType = ["division", "multiply"]
+    const action = ["خرید", "فروش"]
 
     if (!isOpen) return null;
 
@@ -67,9 +69,8 @@ export default function Exchanges({ isOpen, onClose }: exchangeType) {
             toCurrency,
             change,
             rate,
+            exchangeStatus,
             amountMoney,
-            sell_rate,
-            buy_rate,
             exchangeWith,
             exchangeWithPhoneNumber,
             date,
@@ -259,7 +260,43 @@ export default function Exchanges({ isOpen, onClose }: exchangeType) {
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none z-100"
                                 />
                             </div>
+
                             <div>
+                                <label className="block font-bold p-2">حالت</label>
+                                <div className="relative">
+                                    <div
+                                        className="flex items-center justify-between bg-formInputBg border border-formInputBorder rounded-md p-2 cursor-pointer"
+                                        onClick={() => setOpenExchangeStatus(!openExchangeStatus)}
+                                    >
+                                        <span>{exchangeStatus}</span>
+                                        <MdArrowDropDown />
+                                    </div>
+                                    {openExchangeStatus && (
+                                        <div className="absolute w-full bg-formSelectBg border border-formInputBorder rounded-md shadow-lg z-10">
+                                            <input
+                                                required
+                                                name="change"
+                                                type="text"
+                                                onChange={(e) => setExchangeStatus(e.target.value)}
+                                                className="bg-formSelectBg p-2 w-full rounded-sm border-none focus:ring-0 outline-none"
+                                            />
+                                            {action.map((opt) => (
+                                                <div
+                                                    key={opt}
+                                                    onClick={() => {
+                                                        setExchangeStatus(opt);
+                                                        setOpenExchangeStatus(false);
+                                                    }}
+                                                    className="p-2 hover:bg-formSelectHover cursor-pointer"
+                                                >
+                                                    {opt}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            {/* <div>
                                 <label className="p-2 z-100">نرخ خرید </label>
                                 <input
                                     required
@@ -269,8 +306,8 @@ export default function Exchanges({ isOpen, onClose }: exchangeType) {
                                     onChange={(e) => setBuyRate(e.target.value)}
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none z-100"
                                 />
-                            </div>
-                            <div>
+                            </div> */}
+                            {/* <div>
                                 <label className="p-2 z-100">نرخ فروش</label>
                                 <input
                                     required
@@ -280,7 +317,7 @@ export default function Exchanges({ isOpen, onClose }: exchangeType) {
                                     onChange={(e) => setSellRate(e.target.value)}
                                     className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none z-100"
                                 />
-                            </div>
+                            </div> */}
 
 
 

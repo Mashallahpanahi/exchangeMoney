@@ -79,7 +79,7 @@ export default function AddCustomer({ isOpen, onClose }: exchangeType) {
             <div className="bg-varWhite rounded-lg shadow-lg w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
 
                 <div className="flex items-center justify-between p-6 border-b border-gray-200 flex-shrink-0">
-                    <h2 className="text-lg font-semibold">ارسال حواله</h2>
+                    <h2 className="text-lg font-semibold">افزودن مشتری</h2>
                     <button
                         onClick={onClose}
                         className="text-gray-600 hover:text-red-500 text-xl"
@@ -126,6 +126,43 @@ export default function AddCustomer({ isOpen, onClose }: exchangeType) {
                                 />
                             </div>
 
+
+                            <div>
+                                <label className="block font-bold ">customer type:</label>
+                                <div className="relative">
+                                    <div
+                                        className="flex items-center justify-between bg-formInputBg border border-formInputBorder rounded-md p-2 cursor-pointer"
+                                        onClick={() => setOpenCustomerType(!openCutomberType)}
+                                    >
+                                        <span>{customerType}</span>
+                                        <MdArrowDropDown />
+                                    </div>
+                                    {openCutomberType && (
+                                        <div className="absolute w-full bg-formSelectBg border border-formInputBorder rounded-md shadow-lg z-10 max-h-48 overflow-y-auto p-2">
+                                            <input
+                                                required
+                                                name="customerType"
+                                                type="text"
+                                                onChange={(e) => setCustomerType(e.target.value)}
+                                                className="bg-formSelectBg p-2 w-full rounded-sm border-none focus:ring-0 outline-none sticky top-0"
+                                            />
+                                            {slectCustomer.map((opt) => (
+                                                <div
+                                                    key={opt}
+                                                    onClick={() => {
+                                                        setCustomerType(opt);
+                                                        setOpenCustomerType(false);
+                                                    }}
+                                                    className="p-2 hover:bg-formSelectHover cursor-pointer"
+                                                >
+                                                    {opt}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
                             <div>
                                 <label >Address:</label>
                                 <input
@@ -160,41 +197,6 @@ export default function AddCustomer({ isOpen, onClose }: exchangeType) {
                             </div>
 
 
-                            <div>
-                                <label className="block font-bold ">customer type:</label>
-                                <div className="relative">
-                                    <div
-                                        className="flex items-center justify-between bg-formInputBg border border-formInputBorder rounded-md p-2 cursor-pointer"
-                                        onClick={() => setOpenCustomerType(!openCutomberType)}
-                                    >
-                                        <span>{customerType}</span>
-                                        <MdArrowDropDown />
-                                    </div>
-                                    {openCutomberType && (
-                                        <div className="absolute w-full bg-formSelectBg border border-formInputBorder rounded-md shadow-lg z-10 max-h-48 overflow-y-auto">
-                                            <input
-                                                required
-                                                name="customerType"
-                                                type="text"
-                                                onChange={(e) => setCustomerType(e.target.value)}
-                                                className="bg-formSelectBg p-2 w-full rounded-sm border-none focus:ring-0 outline-none sticky top-0"
-                                            />
-                                            {slectCustomer.map((opt) => (
-                                                <div
-                                                    key={opt}
-                                                    onClick={() => {
-                                                        setCustomerType(opt);
-                                                        setOpenCustomerType(false);
-                                                    }}
-                                                    className="p-2 hover:bg-formSelectHover cursor-pointer"
-                                                >
-                                                    {opt}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
 
 
 

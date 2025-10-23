@@ -9,6 +9,7 @@ import { MdManageAccounts } from "react-icons/md";
 import { FaJournalWhills } from "react-icons/fa";
 import { MdOutlineCurrencyExchange } from "react-icons/md";
 import { FaCodeBranch } from "react-icons/fa";
+import { FaPeopleRoof } from "react-icons/fa6";
 
 export default function Dash_Minue() {
     const ctx = useContext(DashboardMinueCtx);
@@ -18,6 +19,10 @@ export default function Dash_Minue() {
     const [openJournal, setOpenJournal] = useState(false)
     const [openHomePage, setOpenHomePage] = useState(false);
 
+
+
+
+    const [openEmployee, setOpenEmployee] = useState(false)
 
     if (!ctx) return null; // safeguard
     const { open: sidebarOpen, setOpen: setSidebarOpen } = ctx;
@@ -65,9 +70,7 @@ export default function Dash_Minue() {
                         >
                             Journal 1
                         </Link>
-                        <Link href="/dashboard/journal/journalTwo" className="block px-4 py-2 hover:bg-dashboardMinueOnHover" onClick={() => setSidebarOpen(false)}>
-                            Journal 2
-                        </Link>
+
                     </div>
                 )}
             </div>
@@ -121,6 +124,31 @@ export default function Dash_Minue() {
                     </div>
                 )}
             </div>
+
+
+
+
+
+            <div>
+                <button
+                    onClick={() => setOpenEmployee(!openEmployee)}
+                    className="inline-flex justify-between items-center w-full px-4 py-2 hover:bg-dashboardMinueOnHover font-bold"
+                >
+                    <span className="flex items-center gap-4"><FaPeopleRoof className="size-6" /> Employee</span>  <span className="ml-2 text-[10px]">{openClass ? "▲" : "▼"}</span>
+                </button>
+                {openEmployee && (
+                    <div className="w-full shadow-lg text-black">
+                        <Link href="/employee/AddEmployee" className="block px-4 py-2 hover:bg-dashboardMinueOnHover" onClick={() => setSidebarOpen(false)}>
+                            add Employee
+                        </Link>
+                        <Link href="/employee/AllEmployeee" className="block px-4 py-2 hover:bg-dashboardMinueOnHover" onClick={() => setSidebarOpen(false)}>
+                            all employees
+                        </Link>
+                    </div>
+                )}
+            </div>
+
+
         </div>
     );
 }

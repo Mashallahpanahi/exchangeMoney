@@ -382,28 +382,40 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
                             </div>
 
 
-                            {/* amountCommission */}
+                            {/*customerType */}
                             <div>
-                                <label className="">مقدار کمیشن</label>
-                                <input
-                                    name="commission"
-                                    type="number"
-                                    value={commission}
-                                    onChange={(e) => setCommission(e.target.value)}
-                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
-                                />
-                            </div>
-
-                            {/* comment */}
-                            <div>
-                                <label className="p-2">جزیات</label>
-                                <input
-                                    name="comment"
-                                    type="text"
-                                    value={comment}
-                                    onChange={(e) => setComment(e.target.value)}
-                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
-                                />
+                                <label className="block font-bold ">نوع مشتری</label>
+                                <div className="relative">
+                                    <div
+                                        className="flex items-center justify-between bg-formInputBg border border-formInputBorder rounded-md p-2 cursor-pointer"
+                                        onClick={() => setOpenCustomerType(!openCustomerType)}
+                                    >
+                                        <span>{customerType}</span>
+                                        <MdArrowDropDown />
+                                    </div>
+                                    {openCustomerType && (
+                                        <div className="absolute w-full bg-formSelectBg border border-formInputBorder rounded-md shadow-lg z-10 max-h-48 overflow-y-auto">
+                                            <input
+                                                name="customerType"
+                                                type="text"
+                                                onChange={(e) => setCustomerType(e.target.value)}
+                                                className="bg-formSelectBg p-2 w-full rounded-sm border-none focus:ring-0 outline-none sticky top-0"
+                                            />
+                                            {TypeOfCustomer.map((opt) => (
+                                                <div
+                                                    key={opt}
+                                                    onClick={() => {
+                                                        setCustomerType(opt);
+                                                        setOpenCustomerType(false);
+                                                    }}
+                                                    className="p-2 hover:bg-formSelectHover cursor-pointer"
+                                                >
+                                                    {opt}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
                             {/* status */}
@@ -442,6 +454,33 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
                                 </div>
                             </div>
 
+
+                            {/* amountCommission */}
+                            <div>
+                                <label className="">مقدار کمیشن</label>
+                                <input
+                                    name="commission"
+                                    type="number"
+                                    value={commission}
+                                    onChange={(e) => setCommission(e.target.value)}
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
+                                />
+                            </div>
+
+                            {/* comment */}
+                            <div>
+                                <label className="p-2">جزیات</label>
+                                <input
+                                    name="comment"
+                                    type="text"
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
+                                    className="bg-formInputBg border border-formInputBorder rounded-md w-full p-2 outline-none"
+                                />
+                            </div>
+
+
+
                             {/* date */}
                             <div>
                                 <label className="p-2">تاریخ</label>
@@ -455,41 +494,6 @@ export default function Hawala({ isOpen, onClose }: exchangeType) {
                             </div>
 
 
-                            {/*customerType */}
-                            <div>
-                                <label className="block font-bold ">نوع مشتری</label>
-                                <div className="relative">
-                                    <div
-                                        className="flex items-center justify-between bg-formInputBg border border-formInputBorder rounded-md p-2 cursor-pointer"
-                                        onClick={() => setOpenCustomerType(!openCustomerType)}
-                                    >
-                                        <span>{customerType}</span>
-                                        <MdArrowDropDown />
-                                    </div>
-                                    {openCustomerType && (
-                                        <div className="absolute w-full bg-formSelectBg border border-formInputBorder rounded-md shadow-lg z-10 max-h-48 overflow-y-auto">
-                                            <input
-                                                name="customerType"
-                                                type="text"
-                                                onChange={(e) => setCustomerType(e.target.value)}
-                                                className="bg-formSelectBg p-2 w-full rounded-sm border-none focus:ring-0 outline-none sticky top-0"
-                                            />
-                                            {TypeOfCustomer.map((opt) => (
-                                                <div
-                                                    key={opt}
-                                                    onClick={() => {
-                                                        setCustomerType(opt);
-                                                        setOpenCustomerType(false);
-                                                    }}
-                                                    className="p-2 hover:bg-formSelectHover cursor-pointer"
-                                                >
-                                                    {opt}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
 
                         </div>
 

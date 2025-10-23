@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FaUsers } from "react-icons/fa";
 import { PiHandDepositFill } from "react-icons/pi";
 import { FaExchangeAlt } from "react-icons/fa";
+import AllBenefit from "@/app/components/AllBenefit";
 
 
 export default function ManagePage() {
@@ -21,18 +22,8 @@ export default function ManagePage() {
 
 
                 {/* Right Section */}
-                <div className="grid grid-cols-2 gap-2 w-full">
-                    <div className="bg-varWhite p-4 rounded-l-[1000px] flex shadow-lg items-center justify-center">
-                        <h1>Our Branches</h1>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="bg-varWhite p-4 rounded-md flex shadow-lg items-center justify-center">
-                            Qandahar Branch Info
-                        </div>
-                        <div className="bg-varWhite p-4 rounded-md flex shadow-lg items-center justify-center">
-                            Herat Branch Info
-                        </div>
-                    </div>
+                <div>
+                    <AllBenefit />
                 </div>
             </div>
 
