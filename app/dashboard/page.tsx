@@ -4,19 +4,21 @@ import DashboardBox from "../components/DashboardBox";
 
 export default function DashboardPage() {
     return (
-        <div className="w-full">
+        <div className="w-full overflow-x-auto p-2">
 
             <div>
                 <DashboardBox />
             </div>
 
-            <div className="flex sm:flex-col lg:flex-row w-full gap-2 items-center bg-bgDashboard">
-                <BareChart />
-                <CircleChart />
+            <div className=" grid md:grid-cols-1 lg:grid-cols-2 w-full gap-2 items-center bg-bgDashboard ">
 
+                <div>
+                    <BareChart />
+                </div>
+                <div>
+                    <CircleChart />
+                </div>
             </div>
-
-
 
 
         </div>

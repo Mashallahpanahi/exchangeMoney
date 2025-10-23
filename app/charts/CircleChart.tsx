@@ -57,7 +57,7 @@ export default function CircleChart() {
 
 
     return (
-        <div className="bg-white rounded-md border border-gray-200 p-6 sm:w-full md:w-[500px] lg:w-[700px]  h-[400px]">
+        <div className="bg-white rounded-md border border-gray-200 p-6 w-full  h-[400px]">
             {/* Header */}
             <div className=' bg-blue-600'></div>
             <div className='bg-[#fdd78c]'></div>

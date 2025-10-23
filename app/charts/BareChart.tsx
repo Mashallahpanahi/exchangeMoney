@@ -105,7 +105,7 @@ export default function BareChart() {
 
 
     return (
-        <div className=" h-[400px]  bg-white rounded-md border border-gray-200  sm:w-full md:w-[700px] lg:w-full p-2">
+        <div className=" h-[400px]  bg-white rounded-md border border-gray-200  w-full  p-2">
             <h1 className="text-lg font-semibold text-gray-900  pl-4 flex" >
                 <span><span className='text-naqibBlue font-bold'>Incomes</span> in this year</span>
             </h1>

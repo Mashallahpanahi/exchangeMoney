@@ -190,7 +190,7 @@ const Navbar = () => {
             </div>
 
 
-            <div className="hidden md:grid md:grid-cols-3 gap-1  lg:hidden ">
+            <div className="hidden md:grid md:grid-cols-4 gap-1  lg:hidden ">
 
                 <div className="flex  shadow-xl bg-bgNaveBarHover w-full p-2 h-12 text-center justify-center rounded-b-2xl hover:bg-[#d4d9e8]">
                     <button onClick={openDepositPopup} className="text-[#1c58dd] w-full h-full">
@@ -245,15 +245,15 @@ const Navbar = () => {
 
 
 
-            <div className='hidden lg:flex gap-4'>
+            <div className='hidden lg:flex gap-2'>
 
-                <div className="flex ml-4 flex-col shadow-xl bg-bgNaveBarHover w-[150px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                <div className="flex ml-4 flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver pr-1 pl-1">
                     <button onClick={openDepositPopup} className="text-[#1c58dd] w-full h-full">
                         Deposit/withDraw
                     </button>
                 </div>
 
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full  h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <button onClick={openExchange} className="text-naqibBlue  w-full ">
                         Exchange
                     </button>
@@ -263,37 +263,37 @@ const Navbar = () => {
                         Transaction
                     </button>
                 </div> */}
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full  h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <button onClick={openHawala} className="text-naqibBlue w-full">
                         Hawala
                     </button>
                 </div>
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full  h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <button onClick={openCustomer} className="text-naqibBlue w-full ">
                         Customer
                     </button>
                 </div>
 
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <Link className="text-naqibBlue  w-full h-full flex items-center justify-center" href={''}>Faild</Link>
                 </div>
 
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full  h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <button onClick={openIncome} className="text-naqibBlue w-full">
                         Income
                     </button>
                 </div>
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full  h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <button onClick={openTotalCash} className="text-naqibBlue w-full ">
                         Total_cash
                     </button>
                 </div>
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full  h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <button onClick={openOutcome} className="text-naqibRed w-full">
                         Outcome
                     </button>
                 </div>
-                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-[100px] h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
+                <div className="flex flex-col shadow-xl bg-bgNaveBarHover w-full  h-12 text-center justify-center rounded-b-2xl hover:bg-minueBarHaver">
                     <button className="text-naqibRed w-full ">
                         Logout
                     </button>

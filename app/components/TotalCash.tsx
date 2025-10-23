@@ -57,7 +57,7 @@ export default function TotalCash({ isOpen, onClose }: exchangeType) {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 ">
-            <div className="bg-varWhite rounded-lg shadow-lg sm:w-full md:w-[600px] h-[400px] overflow-hidden flex flex-col m-4">
+            <div className="bg-varWhite rounded-lg shadow-lg sm:w-full md:w-[600px] h-[500px] overflow-hidden flex flex-col m-4">
                 <div className="flex items-center justify-between p-6 border-b border-gray-200 flex-shrink-0">
                     <h2 className="text-lg font-semibold">دخل</h2>
                     <button
